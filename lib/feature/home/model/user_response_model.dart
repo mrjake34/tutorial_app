@@ -30,8 +30,6 @@ final class UsersResponseModel extends BaseModel {
     final users = this.users?.map((user) => user.toJson()).toList();
     return {
       'users': users,
-      'error': error,
-      'statusCode': statusCode,
     };
   }
 }
