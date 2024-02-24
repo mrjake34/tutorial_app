@@ -1,4 +1,5 @@
 import '../index.dart';
+import 'user_detail_view.dart';
 
 final class ListViewBuilder extends StatelessWidget {
   const ListViewBuilder({
@@ -32,6 +33,14 @@ final class ListViewBuilder extends StatelessWidget {
         return Card(
           child: ListTile(
             /// Kullanıcı adı null olma durumunda boş bir string gösterilir.
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserDetailView(user: user),
+                ),
+              );
+            },
             title: Text(user.name ?? ''),
             subtitle: Text(user.email ?? ''),
             trailing: Text(user.address?.city ?? ''),
