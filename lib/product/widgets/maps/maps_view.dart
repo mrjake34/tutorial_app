@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:tutorial_app/product/utils/snackbar/custom_snackbar.dart';
 
 part '_google_maps_widget.dart';
 part '_apple_maps_widget.dart';
@@ -20,6 +21,8 @@ part '_apple_maps_widget.dart';
 /// [_GoogleMapWidget] ve [_AppleMapWidget] widget'ları dışarıdan erişim olmaması için
 /// _(private) ile başlar ve part olarak ayrı dosyalarda tanımlanmıştır.
 /// Bu widget'lar sadece bu dosyada kullanılır.
+/// [_AppleMapWidget] örnek olarak eklenmiştir, onun yerine Huawei Map, Yandex Map gibi
+/// farklı bir map kullanılabilir, farklı cihazlar ve platformlar için.
 final class MapsView extends StatelessWidget {
   const MapsView({
     super.key,

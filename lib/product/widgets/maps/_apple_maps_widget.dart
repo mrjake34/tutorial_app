@@ -1,6 +1,9 @@
 part of 'maps_view.dart';
 
-class _AppleMapWidget extends StatelessWidget {
+/// Apple Map Widget
+/// Bu widget, Google Maps yerine Apple Maps kullanmak isteyenler için
+/// Yada Apple için farklı bir map kullanılabilir.
+final class _AppleMapWidget extends StatelessWidget {
   _AppleMapWidget({required this.latitude, required this.longitude});
   final double latitude;
   final double longitude;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:tutorial_app/feature/home/model/user.dart';
 import 'package:tutorial_app/product/core/model/base_model.dart';
 
@@ -25,9 +24,14 @@ final class UsersResponseModel extends BaseModel {
 
     /// [decodedData] List ise
     /// içerisinde [User] sınıfı nesneleri barındıran bir liste oluşturulur.
+    /// [decodedData] önce map'e çevrilir, map içerisindeki her bir eleman
+    /// (e) ile temsil edilir ve [User] sınıfından bir nesne oluşturulur.
+    /// Oluşturulan nesneler, [cast] methodu ile Liste içerisinde ki elemanların tipi
+    /// [User] olarak kontrol eder, eğer tip hatalı gelirse [cast] hata döndürür.
     return UsersResponseModel(
       users: (decodedData as List<dynamic>?)
           ?.map((e) => User.fromJson(e as Map<String, dynamic>))
+          .cast<User>()
           .toList(),
     );
   }

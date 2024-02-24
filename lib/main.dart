@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/feature/home/view/home_view.dart';
 
+import 'product/utils/snackbar/custom_snackbar.dart';
+
 /// Uygulamanın başlangıç noktası.
 /// Uygulama başlatıldığında, bu sınıf çalışır.
 /// Bu bölüm olabildiğince küçük tutulmalıdır.
@@ -20,6 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+
+      /// [CustomSnackBar.messengerKey] değişkeni MaterialApp widget'ı içerisinde tanımlanır.
+      scaffoldMessengerKey: CustomSnackBar.messengerKey,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
