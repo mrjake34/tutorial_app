@@ -110,4 +110,6 @@ final class CustomSnackBar {
         ..showSnackBar(snackBar);
     }
   }
+
+  static void successSnackBar(String s) {}
 }
