@@ -39,6 +39,7 @@ dependencies:
   dio: ^5.4.1
   vexana: ^3.5.4
   provider: ^6.1.1
+  google_maps_flutter: ^2.5.3
 
 dev_dependencies:
   flutter_test:
