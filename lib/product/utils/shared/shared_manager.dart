@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutorial_app/product/core/enums/shared_manager_enums.dart';
+
+import '../../../feature/home/model/user.dart';
 
 /// [SharedManager] sınıfı, uygulama içerisinde kullanılacak olan shared_preferences paketini yönetir.
 /// Bu sınıf, uygulama içerisinde kullanılacak olan verileri saklamak için kullanılır.
@@ -117,5 +121,25 @@ final class SharedManager {
   /// durumunda kullanılabilir.
   static Future<bool> clear() async {
     return await _sharedPreferences.clear();
+  }
+
+  static Future<bool> setSavedData(User? value) async {
+    if (value == null) return false;
+    final stringData = value.toJson();
+    final stringDataJson = jsonEncode(stringData);
+    return await _sharedPreferences.setString(
+        SharedManagerEnums.savedUser.name, stringDataJson);
+  }
+
+  static User? getSavedData() {
+    final String? data =
+        _sharedPreferences.getString(SharedManagerEnums.savedUser.name);
+    if (data == null) return null;
+    final decodedData = jsonDecode(data);
+    return User.fromJson(decodedData as Map<String, dynamic>);
+  }
+
+  static Future<bool> removeSavedData() async {
+    return await _sharedPreferences.remove(SharedManagerEnums.savedUser.name);
   }
 }

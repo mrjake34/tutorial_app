@@ -1,3 +1,8 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../product/utils/shared/shared_manager.dart';
 import '../index.dart';
 
 /// Kullanıcı detaylarının gösterildiği sayfa
@@ -20,6 +25,35 @@ final class UserDetailView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            ChangeNotifierProvider<HomeViewModel>(
+              create: (BuildContext context) => HomeViewModel(),
+              child:
+                  Consumer<HomeViewModel>(builder: (context, viewModel, child) {
+                return Column(
+                  children: [
+                    Text(viewModel.isSavedData ? 'Saved' : 'Not Saved'),
+                    Text(viewModel.user?.name ?? ''),
+                    ElevatedButton(
+                      onPressed: () {
+                        viewModel.saveUser(user);
+                      },
+                      child: const Text('Save User'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        viewModel.getSavedUser();
+                      },
+                      child: const Text('Get User'),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          viewModel.removeSavedUser();
+                        },
+                        child: const Text('Delete User')),
+                  ],
+                );
+              }),
+            ),
             ListTile(
               title: const Text('Name'),
               subtitle: Text(user.name ?? ''),

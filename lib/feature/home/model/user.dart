@@ -50,10 +50,10 @@ final class User {
       'name': name,
       'username': username,
       'email': email,
-      'address': address,
+      'address': address?.toJson(),
       'phone': phone,
       'website': website,
-      'company': company,
+      'company': company?.toJson(),
     };
   }
 
@@ -73,10 +73,6 @@ final class User {
           : Company.fromJson(json['company'] as Map<String, dynamic>),
     );
   }
-
-  @override
-  String toString() =>
-      "Users(id: $id,name: $name,username: $username,email: $email,address: $address,phone: $phone,website: $website,company: $company)";
 
   @override
   int get hashCode =>
