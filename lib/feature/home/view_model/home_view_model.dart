@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/feature/home/model/user.dart';
+import 'package:tutorial_app/product/core/enums/shared_manager_enums.dart';
 import '../../../product/utils/shared/shared_manager.dart';
 import '../service/home_service.dart';
 
@@ -66,20 +67,31 @@ final class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// [saveUser] metodu, [SharedManager] sınıfı kullanılarak kullanıcı bilgilerini saklar.
+  /// [User] tipinde bir parametre alır.
+  /// Bu metot, [SharedManager] sınıfının [setSavedData] metodu kullanılarak
   void saveUser(User user) async {
-    final isSavedData = await SharedManager.setSavedData(user);
+    final isSavedData = await SharedManager.setSavedData<User>(
+        SharedManagerEnums.savedUser, user);
     _savedData = isSavedData;
     notifyListeners();
   }
 
+  /// [getSavedUser] metodu, [SharedManager] sınıfı kullanılarak saklanan kullanıcı bilgilerini getirir.
+  /// Bu metot, [SharedManager] sınıfının [getSavedData] metodu kullanılarak
+  /// saklanan kullanıcı bilgilerini getirir.
   void getSavedUser() async {
-    final user = SharedManager.getSavedData();
+    final user =
+        SharedManager.getSavedData<User>(SharedManagerEnums.savedUser, User());
     _user = user;
     notifyListeners();
   }
 
+  /// [removeSavedUser] metodu, [SharedManager] sınıfı kullanılarak saklanan kullanıcı bilgilerini siler.
+  /// Bu metot, [SharedManager] sınıfının [remove] metodu kullanılarak
+  /// saklanan kullanıcı bilgilerini siler.
   void removeSavedUser() async {
-    final isRemoved = await SharedManager.removeSavedData();
+    final isRemoved = await SharedManager.remove(SharedManagerEnums.savedUser);
     _savedData = !isRemoved;
     notifyListeners();
   }
