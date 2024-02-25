@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/feature/home/model/user.dart';
+import '../../../product/utils/shared/shared_manager.dart';
 import '../service/home_service.dart';
 
 /// [ChangeNotifier] sınıfından bir nesne oluşturulur.
@@ -24,6 +25,7 @@ final class HomeViewModel extends ChangeNotifier {
   User? _user;
   int? _statusCode;
   String? _error;
+  bool _savedData = false;
 
   /// [HomeViewModel] sınıfına ait değişkenlere erişmek için get metotları kullanılır.
   /// Bu metotlar dışarıdan erişim sağlar.
@@ -32,6 +34,7 @@ final class HomeViewModel extends ChangeNotifier {
   User? get user => _user;
   int? get statusCode => _statusCode;
   String? get error => _error;
+  bool get isSavedData => _savedData;
 
   /// [HomeService] sınıfından bir nesne oluşturulur.
   /// Bu sınıf ile [ServiceManager] dan gelen veriler işlenir.
@@ -54,12 +57,30 @@ final class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setUser(int id) async {
+  void setUser(int id) async {
     /// [id] parametresi ile kullanıcı bilgileri getirilir.
     final response = await _homeService.getUser(id);
     _user = response.user;
     _statusCode = response.statusCode;
     _error = response.error;
+    notifyListeners();
+  }
+
+  void saveUser(User user) async {
+    final isSavedData = await SharedManager.setSavedData(user);
+    _savedData = isSavedData;
+    notifyListeners();
+  }
+
+  void getSavedUser() async {
+    final user = SharedManager.getSavedData();
+    _user = user;
+    notifyListeners();
+  }
+
+  void removeSavedUser() async {
+    final isRemoved = await SharedManager.removeSavedData();
+    _savedData = !isRemoved;
     notifyListeners();
   }
 }
