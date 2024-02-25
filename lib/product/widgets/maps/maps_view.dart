@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:tutorial_app/product/utils/snackbar/custom_snackbar.dart';
 
 part '_google_maps_widget.dart';
 part '_apple_maps_widget.dart';

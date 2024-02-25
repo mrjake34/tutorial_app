@@ -26,24 +26,26 @@ final class HomeView extends StatelessWidget {
         /// [users] ve [error] değişkenleri null ise, yükleniyor gösterilir.
         /// [HomeViewModel] sınıfı içerisindeki [users] ve [error] değişkenleri değiştiğinde, bu widget yeniden oluşturulur.
         /// [Consumer] sınıfı [Provider] paketinden gelir.
-        body: Consumer<HomeViewModel>(builder: (context, viewModel, child) {
-          if (viewModel.users != null && viewModel.users!.isNotEmpty) {
-            /// [ListViewBuilder] sınıfı ile kullanıcı listesi gösterilir.
-            /// [users] parametresi ile kullanıcı listesi alınır.
-            /// [viewModel.users] değişkeni önceden kontrol edildiği için null olma ihtimali yoktur.
-            /// fakat dart dili bunu anlamaz
-            /// bu sebeple [!] işareti ile null force yapılır.
-            /// Null kontrolü yapılmadığı durumlarda null foce [!] işareti yapılırsa hata alınır.
-            return ListViewBuilder(users: viewModel.users!);
-          } else if (viewModel.error != null) {
-            return Center(
-              child: Text(viewModel.error ?? ''),
+        body: Consumer<HomeViewModel>(
+          builder: (context, viewModel, child) {
+            if (viewModel.users != null && viewModel.users!.isNotEmpty) {
+              /// [ListViewBuilder] sınıfı ile kullanıcı listesi gösterilir.
+              /// [users] parametresi ile kullanıcı listesi alınır.
+              /// [viewModel.users] değişkeni önceden kontrol edildiği için null olma ihtimali yoktur.
+              /// fakat dart dili bunu anlamaz
+              /// bu sebeple [!] işareti ile null force yapılır.
+              /// Null kontrolü yapılmadığı durumlarda null foce [!] işareti yapılırsa hata alınır.
+              return ListViewBuilder(users: viewModel.users!);
+            } else if (viewModel.error != null) {
+              return Center(
+                child: Text(viewModel.error ?? ''),
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
             );
-          }
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
-        }),
+          },
+        ),
       ),
     );
   }
