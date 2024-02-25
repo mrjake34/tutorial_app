@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutorial_app/product/core/enums/shared_manager_enums.dart';
+import 'package:tutorial_app/product/core/model/base_model.dart';
 
 import '../../../feature/home/model/user.dart';
 
@@ -123,23 +124,52 @@ final class SharedManager {
     return await _sharedPreferences.clear();
   }
 
-  static Future<bool> setSavedData(User? value) async {
-    if (value == null) return false;
+  /// [setSavedData] [T] tipinde bir veri saklamak için kullanılır.
+  /// [key] parametresi, saklanacak verinin key'ini belirtir.
+  /// [value] parametresi, saklanacak veriyi belirtir.
+  /// [T] tipi BaseModel sınıfından türetilmiş bir sınıf olmalıdır.
+  /// [value] nin tipi henüz belirli olmadığı için toJson() metodu BaseModel sınıfında
+  /// tanımlı olduğu için [value]'den [toJson()] metodu çağrılır.
+  /// zaten [value] BaseModel sınıfından türetilmiş bir sınıf olduğu için [toJson()] metodu
+  /// [T] ile tanımlanan sınıfın içerisinde bulunur.
+  static Future<bool> setSavedData<T extends BaseModel>(
+      SharedManagerEnums? key, T? value) async {
+    /// Eğer [key] veya [value] null ise, false döner.
+    if (key == null || value == null) return false;
+
+    /// [value] BaseModel sınıfından türetilmiş bir sınıf olduğu için [toJson()] metodu
+    /// kullanılarak map haline getirilir.
     final stringData = value.toJson();
+
+    /// [SharedPreferences] paketi string veri sakladığı için [jsonEncode()] metodu ile
+    /// json formatına çevrilir. Bu sayede [SharedPreferences] paketi ile saklanabilir.
     final stringDataJson = jsonEncode(stringData);
-    return await _sharedPreferences.setString(
-        SharedManagerEnums.savedUser.name, stringDataJson);
+    return await _sharedPreferences.setString(key.name, stringDataJson);
   }
 
-  static User? getSavedData() {
-    final String? data =
-        _sharedPreferences.getString(SharedManagerEnums.savedUser.name);
+  /// [getSavedData] metodu, shared_preferences paketinden [T] tipinde bir veri getirmek için kullanılır.
+  /// [key] parametresi, getirilecek verinin key'ini belirtir.
+  /// [model] parametresi, getirilecek verinin tipini belirtir.
+  /// [T] tipi BaseModel sınıfından türetilmiş bir sınıf olmalıdır.
+  /// [model] parametresi kullanılarak [fromJson()] metodu çağrılır.
+  /// [fromJson()] metodu, BaseModel sınıfında tanımlıdır.
+  static T? getSavedData<T extends BaseModel>(
+      SharedManagerEnums? key, T? model) {
+    /// Eğer [key] veya [model] null ise, null döner.
+    if (key == null || model == null) return null;
+
+    /// [SharedPreferences] paketinden string veri getirilir.
+    final String? data = _sharedPreferences.getString(key.name);
+
+    /// Eğer [data] null ise, null döner.
     if (data == null) return null;
-    final decodedData = jsonDecode(data);
-    return User.fromJson(decodedData as Map<String, dynamic>);
-  }
 
-  static Future<bool> removeSavedData() async {
-    return await _sharedPreferences.remove(SharedManagerEnums.savedUser.name);
+    /// [jsonDecode()] metodu ile json formatındaki veri parse edilir.
+    /// ve bir map haline getirilir.
+    final decodedData = jsonDecode(data);
+
+    /// [model] parametresi kullanılarak [fromJson()] metodu çağrılır.
+    /// [fromJson()] map haline getirilen veriyi [T] tipine çevirir ve geri döndürür.
+    return model.fromJson(decodedData as Map<String, dynamic>);
   }
 }

@@ -1,7 +1,8 @@
+import '../../../product/core/model/base_model.dart';
 import 'address.dart';
 import 'company.dart';
 
-final class User {
+final class User extends BaseModel<User> {
   final int? id;
   final String? name;
   final String? username;
@@ -44,6 +45,7 @@ final class User {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -91,4 +93,7 @@ final class User {
           phone == other.phone &&
           website == other.website &&
           company == other.company;
+
+  @override
+  User fromJson(json) => User.fromJson(json);
 }
