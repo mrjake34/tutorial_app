@@ -1,0 +1,4 @@
+enum SharedManagerEnums {
+  email,
+  password,
+}

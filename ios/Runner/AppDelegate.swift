@@ -11,6 +11,7 @@ import GoogleMaps
     /// Güvenlik nedeniyle IP adresi kısıtlaması yapıldı.
     /// Bu nedenle Google Maps API Key'i kısıtlıdır.
     /// Eğer uygulamayı çalıştırmak isterseniz, kendi API Key'inizi kullanmalısınız.
+    /// API Key almak için: https://developers.google.com/maps/documentation/ios-sdk/get-api-key
     GMSServices.provideAPIKey("AIzaSyBDfOvDcHODZDGwkQqooDGNs1tjCHrtJYk")
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
