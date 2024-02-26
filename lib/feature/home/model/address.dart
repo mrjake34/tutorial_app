@@ -1,13 +1,22 @@
+import 'package:json_annotation/json_annotation.dart';
+
+import '../../../product/core/model/base_model.dart';
 import 'geo.dart';
 
-final class Address {
+part 'address.g.dart';
+
+@JsonSerializable(
+  checked: true,
+  explicitToJson: true,
+)
+final class Address extends BaseModel<Address> {
   final String? street;
   final String? suite;
   final String? city;
   final String? zipcode;
   final Geo? geo;
 
-  Address({
+  const Address({
     this.street,
     this.suite,
     this.city,
@@ -31,31 +40,11 @@ final class Address {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'street': street,
-      'suite': suite,
-      'city': city,
-      'zipcode': zipcode,
-      'geo': geo?.toJson(),
-    };
-  }
-
-  factory Address.fromJson(Map<String, dynamic> json) {
-    return Address(
-      street: json['street'] as String?,
-      suite: json['suite'] as String?,
-      city: json['city'] as String?,
-      zipcode: json['zipcode'] as String?,
-      geo: json['geo'] == null
-          ? null
-          : Geo.fromJson(json['geo'] as Map<String, dynamic>),
-    );
-  }
-
   @override
-  String toString() =>
-      "Address(street: $street,suite: $suite,city: $city,zipcode: $zipcode,geo: $geo)";
+  Map<String, dynamic> toJson() => _$AddressToJson(this);
+
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
 
   @override
   int get hashCode => Object.hash(street, suite, city, zipcode, geo);
@@ -70,4 +59,10 @@ final class Address {
           city == other.city &&
           zipcode == other.zipcode &&
           geo == other.geo;
+
+  @override
+  Address fromJson(json) => Address.fromJson(json);
+
+  @override
+  List<Object?> get props => [street, suite, city, zipcode, geo];
 }

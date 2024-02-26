@@ -7,7 +7,8 @@ final class UsersResponseModel extends BaseModel {
   final User? user;
   final String? error;
   final int? statusCode;
-  UsersResponseModel({this.users, this.user, this.error, this.statusCode});
+  const UsersResponseModel(
+      {this.users, this.user, this.error, this.statusCode});
 
   @override
   fromJson(dynamic json) {
@@ -15,7 +16,7 @@ final class UsersResponseModel extends BaseModel {
     final decodedData = jsonDecode(json);
 
     /// [decodedData] Map ise
-    /// [User] sınıfından bir nesne oluşturulur.
+    /// [user] parametresine [User] sınıfından bir nesne oluşturulur ve atanır.
     if (decodedData is Map<String, dynamic>) {
       return UsersResponseModel(
         user: User.fromJson(decodedData),
@@ -43,4 +44,7 @@ final class UsersResponseModel extends BaseModel {
       'users': users,
     };
   }
+
+  @override
+  List<Object?> get props => [users, user, error, statusCode];
 }

@@ -1,9 +1,19 @@
-final class Company {
+import 'package:json_annotation/json_annotation.dart';
+
+import '../../../product/core/model/base_model.dart';
+
+part 'company.g.dart';
+
+@JsonSerializable(
+  checked: true,
+  explicitToJson: true,
+)
+final class Company extends BaseModel<Company> {
   final String? name;
   final String? catchPhrase;
   final String? bs;
 
-  Company({
+  const Company({
     this.name,
     this.catchPhrase,
     this.bs,
@@ -21,34 +31,15 @@ final class Company {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'catchPhrase': catchPhrase,
-      'bs': bs,
-    };
-  }
+  @override
+  Map<String, dynamic> toJson() => _$CompanyToJson(this);
 
-  factory Company.fromJson(Map<String, dynamic> json) {
-    return Company(
-      name: json['name'] as String?,
-      catchPhrase: json['catchPhrase'] as String?,
-      bs: json['bs'] as String?,
-    );
-  }
+  factory Company.fromJson(Map<String, dynamic> json) =>
+      _$CompanyFromJson(json);
 
   @override
-  String toString() => "Company(name: $name,catchPhrase: $catchPhrase,bs: $bs)";
+  Company fromJson(json) => Company.fromJson(json);
 
   @override
-  int get hashCode => Object.hash(name, catchPhrase, bs);
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Company &&
-          runtimeType == other.runtimeType &&
-          name == other.name &&
-          catchPhrase == other.catchPhrase &&
-          bs == other.bs;
+  List<Object?> get props => [name, catchPhrase, bs];
 }

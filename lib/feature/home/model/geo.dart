@@ -1,8 +1,17 @@
-final class Geo {
+import 'package:json_annotation/json_annotation.dart';
+import 'package:tutorial_app/product/core/model/base_model.dart';
+
+part 'geo.g.dart';
+
+@JsonSerializable(
+  checked: true,
+  explicitToJson: true,
+)
+final class Geo extends BaseModel<Geo> {
   final String? lat;
   final String? lng;
 
-  Geo({
+  const Geo({
     this.lat,
     this.lng,
   });
@@ -17,31 +26,14 @@ final class Geo {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'lat': lat,
-      'lng': lng,
-    };
-  }
+  @override
+  Map<String, dynamic> toJson() => _$GeoToJson(this);
 
-  factory Geo.fromJson(Map<String, dynamic> json) {
-    return Geo(
-      lat: json['lat'] as String?,
-      lng: json['lng'] as String?,
-    );
-  }
+  factory Geo.fromJson(Map<String, dynamic> json) => _$GeoFromJson(json);
 
   @override
-  String toString() => "Geo(lat: $lat,lng: $lng)";
+  Geo fromJson(json) => Geo.fromJson(json);
 
   @override
-  int get hashCode => Object.hash(lat, lng);
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Geo &&
-          runtimeType == other.runtimeType &&
-          lat == other.lat &&
-          lng == other.lng;
+  List<Object?> get props => [lat, lng];
 }
