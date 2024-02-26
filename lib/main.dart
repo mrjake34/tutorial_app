@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/feature/home/view/home_view.dart';
 import 'package:tutorial_app/product/core/starter/starter.dart';
+import 'package:tutorial_app/product/utils/localization/localization_manager.dart';
 
 import 'product/utils/snackbar/custom_snackbar.dart';
 
@@ -19,14 +21,20 @@ Future<void> main() async {
   /// Uygulama başlatılır.
   /// runApp metodu, uygulamanın başlatılmasını sağlar.
   /// runApp metodu içerisine, uygulamanın başlangıç widget'ı verilir.
-  runApp(const MyApp());
+  /// [LocalizationManager] widget'ı, uygulama içerisinde kullanılacak olan dil konfigürasyonlarını yapar.
+  /// Bu işlem uygulama başlatılmadan önce yapılmalıdır.
+  runApp(
+    LocalizationManager(
+      child: const MyApp(),
+    ),
+  );
 }
 
 /// [MaterialApp] uygulamanın temel widget'ıdır.
 /// Bu widget, uygulamanın temel konfigürasyonlarını yapar.
 /// Uygulama içerisinde kullanılacak tema, başlangıç sayfası gibi konfigürasyonlar bu widget içerisinde yapılır.
 /// Bu widget olabilirliğince küçük tutulmalıdır.
-class MyApp extends StatelessWidget {
+final class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
@@ -35,6 +43,17 @@ class MyApp extends StatelessWidget {
 
       /// [CustomSnackBar.messengerKey] değişkeni MaterialApp widget'ı içerisinde tanımlanır.
       scaffoldMessengerKey: CustomSnackBar.messengerKey,
+
+      /// [EasyLocalization] widget'ı, uygulama içerisinde kullanılacak olan dil konfigürasyonlarını yapar.
+      /// Bu widget, uygulama başlatıldıktan sonra çalıştırılır.
+      /// [context.locale] EasyLocalization paketi içerisinde bulunan
+      /// BuildContext için yapılmış bir extension'dan gelir.
+      /// [context.locale] bir getter'dır ve uygulama içerisinde kullanılan dilin
+      /// Locale tipinde bir nesnesini döndürür.
+      /// EasyLocalization.of(context).locale ile aynı işlevi görür.
+      locale: context.locale,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

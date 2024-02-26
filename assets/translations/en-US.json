@@ -1,0 +1,41 @@
+{
+    "main": {
+        "title": "Tutorial App",
+        "saved": "Saved",
+        "notSaved": "Not saved",
+        "updated": "Updated",
+        "deleted": "Deleted",
+        "loading": "Loading",
+        "error": "Error",
+        "noData": "No data",
+        "noDataFound": "No data found"
+    },
+    "userTexts": {
+        "name": "Name",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "phone": "Phone",
+        "address": "Address",
+        "website": "Website",
+        "company": "Company",
+        "city": "City",
+        "zipcode": "Zipcode",
+        "geo": "Geo"
+    },
+    "buttons": {
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "delete": "Delete",
+        "add": "Add",
+        "save": "Save",
+        "close": "Close",
+        "back": "Back",
+        "next": "Next",
+        "finish": "Finish"
+    },
+    "args": {
+        "name": "Name: {}"
+    }
+}

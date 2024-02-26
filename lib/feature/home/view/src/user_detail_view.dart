@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-import '../../../../product/utils/shared/shared_manager.dart';
+import '../../../../product/utils/localization/locale_keys.g.dart';
 import '../index.dart';
 
 /// Kullanıcı detaylarının gösterildiği sayfa
@@ -25,69 +23,54 @@ final class UserDetailView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ChangeNotifierProvider<HomeViewModel>(
-              create: (BuildContext context) => HomeViewModel(),
-              child:
-                  Consumer<HomeViewModel>(builder: (context, viewModel, child) {
-                return Column(
-                  children: [
-                    Text(viewModel.isSavedData ? 'Saved' : 'Not Saved'),
-                    Text(viewModel.user?.name ?? ''),
-                    ElevatedButton(
-                      onPressed: () {
-                        viewModel.saveUser(user);
-                      },
-                      child: const Text('Save User'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        viewModel.getSavedUser();
-                      },
-                      child: const Text('Get User'),
-                    ),
-                    ElevatedButton(
-                        onPressed: () {
-                          viewModel.removeSavedUser();
-                        },
-                        child: const Text('Delete User')),
-                  ],
-                );
-              }),
-            ),
             ListTile(
-              title: const Text('Name'),
-              subtitle: Text(user.name ?? ''),
+              /// [LocaleKeys] sınıfı içerisindeki anahtarlar getirilir.
+              /// bu anahtarlar json dosyasındaki değerlerin anahtarlarıdır.
+              /// [tr()] metodu ile çeviri yapılır.
+              /// bu metot çeviriyi yaparken kendi içerisinde ki provider'ı kullanır.
+              /// bu sebeple [EasyLocalization] sınıfının yapıcı metoduna [child] parametresi verilir.
+              /// bu parametre ile çeviri yapılacak olan widget sarılır.
+              /// bu sayede çeviri yapılırken, çeviri yapılacak olan widget'ın state'i değiştiğinde
+              /// çeviri yapılır ve widget'ın state'i güncellenir.
+              /// [tr()] metodunun kullanıldığı yerlerde state güncellenmesi olacağı için
+              /// kullanılan widget'lar const olmamalıdır.
+              title: Text(LocaleKeys.userTexts_name.tr()),
+
+              /// [LocaleKeys] sınıfı içerisindeki anahtarlar kullanılarak çeviri yapılır.
+              /// [args] parametresi ile çeviri yapılırken kullanılacak olan parametreler belirtilir.
+              /// bu parametreler, json dosyasındaki {} gibi yer tutucuların yerine geçer.
+              subtitle: Text(LocaleKeys.args_name.tr(args: [user.name ?? ''])),
             ),
             ListTile(
               title: const Text('Username'),
               subtitle: Text(user.username ?? ''),
             ),
             ListTile(
-              title: const Text('Email'),
+              title: Text(LocaleKeys.userTexts_email.tr()),
               subtitle: Text(user.email ?? ''),
             ),
             ListTile(
-              title: const Text('Phone'),
+              title: Text(LocaleKeys.userTexts_phone.tr()),
               subtitle: Text(user.phone ?? ''),
             ),
             ListTile(
-              title: const Text('Website'),
+              title: Text(LocaleKeys.userTexts_website.tr()),
               subtitle: Text(user.website ?? ''),
             ),
             ListTile(
-              title: const Text('Company'),
+              title: Text(LocaleKeys.userTexts_company.tr()),
               subtitle: Text(user.company?.name ?? ''),
             ),
             ListTile(
-              title: const Text('Address'),
+              title: Text(LocaleKeys.userTexts_address.tr()),
               subtitle: Text(user.address?.street ?? ''),
             ),
             ListTile(
-              title: const Text('City'),
+              title: Text(LocaleKeys.userTexts_city.tr()),
               subtitle: Text(user.address?.city ?? ''),
             ),
             ListTile(
-              title: const Text('Zipcode'),
+              title: Text(LocaleKeys.userTexts_zipcode.tr()),
               subtitle: Text(user.address?.zipcode ?? ''),
             ),
             ListTile(
@@ -105,7 +88,7 @@ final class UserDetailView extends StatelessWidget {
                 },
                 icon: const Icon(Icons.map),
               ),
-              title: const Text('Geo'),
+              title: Text(LocaleKeys.userTexts_geo.tr()),
               subtitle: Text(
                   '${user.address?.geo?.lat ?? ''}, ${user.address?.geo?.lng ?? ''}'),
             ),
