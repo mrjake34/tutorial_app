@@ -23,16 +23,21 @@ final class LocalizationManager extends EasyLocalization {
           path: _path,
         );
 
+  /// [path] değişkeni, dil paketlerinin bulunduğu klasörün adını içerir.
+  /// bu değişken, [EasyLocalization] sınıfının yapıcı metoduna verilmesi gereken parametrelerden biridir.
+  /// bu değişken değiştirilmemelidir, bu yüzden const olarak tanımlanmıştır.
   static const String _path = 'assets/translations';
 
+  /// [init] metodu, uygulama başlatıldığında çalıştırılması gereken metoddur.
+  /// bu metot, [EasyLocalization] sınıfının [ensureInitialized] metodunu çalıştırır.
+  /// bu metot, dil paketlerinin yüklenmesi için kullanılır.
   static Future<void> init() async {
     await EasyLocalization.ensureInitialized();
   }
 
-  static String translate(String key) {
-    return tr(key);
-  }
-
+  /// [supportedLocales] değişkeni, uygulama içerisinde kullanılacak olan dilleri içerir.
+  /// bu değişken, [EasyLocalization] sınıfının yapıcı metoduna verilmesi gereken parametrelerden biridir.
+  /// bu değişken değiştirilmemelidir, bu yüzden final olarak tanımlanmıştır.
   static final List<Locale> _supportedLocales = [
     Language.en.locale,
   ];
