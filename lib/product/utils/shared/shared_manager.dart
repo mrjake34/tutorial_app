@@ -4,8 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutorial_app/product/core/enums/shared_manager_enums.dart';
 import 'package:tutorial_app/product/core/model/base_model.dart';
 
-import '../../../feature/home/model/user.dart';
-
 /// [SharedManager] sınıfı, uygulama içerisinde kullanılacak olan shared_preferences paketini yönetir.
 /// Bu sınıf, uygulama içerisinde kullanılacak olan verileri saklamak için kullanılır.
 /// Paket bağımsızlığını sağlamak için, [SharedManagerEnums] sınıfı kullanılır.
