@@ -1,17 +1,21 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:tutorial_app/feature/home/view/index.dart';
+import 'package:tutorial_app/product/utils/localization/locale_keys.g.dart';
 
 import '../view_model/ptohos_view_model.dart';
 
-class PhotosView extends StatelessWidget {
+part 'src/_photos_gridview_builder.dart';
+
+final class PhotosView extends StatelessWidget {
   const PhotosView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Photos'),
+        title: Text(LocaleKeys.photos_title.tr()),
       ),
       body: ChangeNotifierProvider(
         create: (BuildContext context) => PhotosViewModel()
@@ -26,81 +30,7 @@ class PhotosView extends StatelessWidget {
                 child: CircularProgressIndicator.adaptive(),
               );
             }
-            return Column(
-              children: [
-                Flexible(
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: viewModel.data?.photos?.length ?? 0,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                viewModel.data?.photos?[index].url ?? ''),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Container(
-                  color: Theme.of(context).colorScheme.surfaceBright,
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              viewModel.getPhotos(
-                                0,
-                                10,
-                              );
-                            },
-                            icon: const Icon(Icons.first_page),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              if ((viewModel.data?.offset ?? 0) - 10 < 0) {
-                                return;
-                              }
-                              viewModel.getPhotos(
-                                (viewModel.data?.offset ?? 0) - 10,
-                                (viewModel.data?.limit ?? 10) - 10,
-                              );
-                            },
-                            icon: const Icon(Icons.arrow_back),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        '${viewModel.data?.offset ?? 0} - ${(viewModel.data?.limit ?? 10)}',
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          viewModel.getPhotos(
-                            (viewModel.data?.offset ?? 0) + 10,
-                            (viewModel.data?.limit ?? 10) + 10,
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_forward),
-                      ),
-                      const SizedBox.shrink()
-                    ],
-                  ),
-                )
-              ],
-            );
+            return _PhotosGridViewBuilder(viewModel);
           },
         ),
       ),
