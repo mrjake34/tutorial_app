@@ -42,6 +42,9 @@ dependencies:
   google_maps_flutter: ^2.5.3
   shared_preferences: ^2.2.2
   easy_localization: ^3.0.4
+  json_serializable: ^6.7.1
+  json_annotation: ^4.8.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:

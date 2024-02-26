@@ -1,7 +1,22 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import '../../../product/core/model/base_model.dart';
 import 'address.dart';
 import 'company.dart';
 
+/// [User] sınıfının json serileştirme işlemleri için generate dosyası.
+part 'user.g.dart';
+
+/// [JsonSerializable] özelleştirebilmek için kullanılan bir yapıcı metot.
+/// [checked] parametresi ile json dosyasındaki verilerin null olup olmadığı kontrol edilir.
+/// [explicitToJson] parametresi ile toJson metodu kullanılırken, [Map<String, dynamic>] döndürülür.
+@JsonSerializable(
+  checked: true,
+  explicitToJson: true,
+)
+
+/// [User] sınıfı [BaseModel] sınıfından türetilmiştir.
+/// Bu sebeple [BaseModel] sınıfındaki metotlar bu sınıf içerisinde kullanılabilir.
 final class User extends BaseModel<User> {
   final int? id;
   final String? name;
@@ -12,7 +27,9 @@ final class User extends BaseModel<User> {
   final String? website;
   final Company? company;
 
-  User({
+  /// [User] sınıfının yapıcı metodu.
+  /// Bu metot ile sınıfın değişkenlerine değer ataması yapılır.
+  const User({
     this.id,
     this.name,
     this.username,
@@ -23,6 +40,10 @@ final class User extends BaseModel<User> {
     this.company,
   });
 
+  /// [copyWith] metodu ile sınıfın kopyası oluşturulur.
+  /// Bu metot ile sınıfın içerisindeki değişkenlerin değerleri değiştirilir.
+  /// final olarak tanımlanan değişkenlerin değerleri doğrudan değiştirilemez.
+  /// Bu sebeple bu metot ile yeni bir sınıf oluşturulur ve bu sınıfın değişkenleri değiştirilir.
   User copyWith({
     int? id,
     String? name,
@@ -45,55 +66,35 @@ final class User extends BaseModel<User> {
     );
   }
 
+  /// [User] sınıfının json serileştirme işlemleri için metotlar.
+  /// [User] sınıfını ve içerisinde ki değerleri [Map]'e çevrilir ve geriye bir [Map] döndürür.
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'username': username,
-      'email': email,
-      'address': address?.toJson(),
-      'phone': phone,
-      'website': website,
-      'company': company?.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      id: json['id'] as int?,
-      name: json['name'] as String?,
-      username: json['username'] as String?,
-      email: json['email'] as String?,
-      address: json['address'] == null
-          ? null
-          : Address.fromJson(json['address'] as Map<String, dynamic>),
-      phone: json['phone'] as String?,
-      website: json['website'] as String?,
-      company: json['company'] == null
-          ? null
-          : Company.fromJson(json['company'] as Map<String, dynamic>),
-    );
-  }
+  /// [User] sınıfının json serileştirme işlemleri için metotlar.
+  /// [json]'dan gelen verileri [User] sınıfına çevirir ve geriye bir [User] sınıfı döndürür.
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
-  @override
-  int get hashCode =>
-      Object.hash(id, name, username, email, address, phone, website, company);
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is User &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          username == other.username &&
-          email == other.email &&
-          address == other.address &&
-          phone == other.phone &&
-          website == other.website &&
-          company == other.company;
-
+  /// [fromJson] metodu [User.fromJson()] metodunu kullanarak [json] veriyi [User] sınıfına çevirir.
   @override
   User fromJson(json) => User.fromJson(json);
+
+  /// [props] metodu ile sınıfın içerisindeki değişkenlerin değerleri listelenir.
+  /// Bu metot ile sınıfın içerisindeki değişkenlerin değerleri karşılaştırılır.
+  /// Eğer değişkenlerin değerleri birbirine eşitse, bu değişkenler aynı kabul edilir.
+  /// Bu metot olmadan karşılaştırma yapılırsa, sınıfın içerisindeki değişkenlerin referansları karşılaştırılır.
+  /// Bu sebeple değişkenlerin değerleri aynı olsa bile, referansları farklı olduğu için eşit kabul edilmez.
+  /// Bu metot ile değişkenlerin değerleri karşılaştırıldığı için, değişkenlerin referanslarına bakılmaz.
+  /// Bu sebeple değişkenlerin değerleri aynı olsa bile, referansları farklı olsa bile eşit kabul edilir.
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        username,
+        email,
+        address,
+        phone,
+        website,
+        company,
+      ];
 }

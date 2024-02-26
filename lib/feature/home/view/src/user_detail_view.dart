@@ -42,7 +42,7 @@ final class UserDetailView extends StatelessWidget {
               subtitle: Text(LocaleKeys.args_name.tr(args: [user.name ?? ''])),
             ),
             ListTile(
-              title: const Text('Username'),
+              title: Text(LocaleKeys.userTexts_username.tr()),
               subtitle: Text(user.username ?? ''),
             ),
             ListTile(
