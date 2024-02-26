@@ -22,12 +22,17 @@ final class ServiceManager {
   /// Bu nesne, API istekleri yapmak için kullanılır.
   /// Bu nesne, sınıfın dışında oluşturulduğu için, sınıfın dışından erişilemez.
   /// Bu nesne, sadece bu sınıf içerisinde kullanılır.
-  ServiceManager() {
+  ServiceManager({this.baseUrl}) {
     _client = http.Client();
+    if (baseUrl != null) {
+      _baseUrl = baseUrl!;
+    }
   }
 
+  final String? baseUrl;
+
   /// Bu değişken, API'nin base url'ini belirtir.
-  final _baseUrl = 'https://jsonplaceholder.typicode.com/';
+  String _baseUrl = 'https://jsonplaceholder.typicode.com/';
 
   /// Bu değişken, API isteklerinde kullanılacak header bilgilerini belirtir.
   final _headers = {

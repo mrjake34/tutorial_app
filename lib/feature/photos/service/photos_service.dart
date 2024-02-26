@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:tutorial_app/feature/home/model/user_response_model.dart';
+import 'package:tutorial_app/feature/photos/model/photos_response_model.dart';
 
 import '../../../product/core/service/service_manager.dart';
 
-final class HomeService {
-  HomeService();
+final class PhotosService {
+  PhotosService();
 
   /// [ServiceManager] sınıfından bir nesne oluşturulur.
   /// Bu sınıf ile API istekleri yapılır.
@@ -13,52 +13,54 @@ final class HomeService {
   /// _service değişkenine dışarıdan erişim olmaması için private olarak tanımlanmıştır.
   /// Bu değişkenin dışarıdan erişim olmaması, sınıfın dışarıdan erişilebilirliğini azaltır.
   /// final değişken olduğu için sadece bir kere değer atanabilir.
-  final _service = ServiceManager();
+  final _service =
+      ServiceManager(baseUrl: 'https://api.slingacademy.com/v1/sample-data/');
 
-  Future<UsersResponseModel> getUsers() async {
+  Future<PhotosResponseModel> getPhotos(int start, int end) async {
     /// Kullanıcı listesi getirilir.
     /// [users] endpoint'i ile kullanıcı listesi getirilir.
     /// [model] parametresi parse edilecek modeli belirtir.
     /// [UsersResponseModel] dönüş tipi belirtilir.
-    final response = await _service.get<UsersResponseModel>('users',
-        model: const UsersResponseModel());
+    final response = await _service.get<PhotosResponseModel>(
+        'photos?offset=$start&limit=$end',
+        model: const PhotosResponseModel());
 
     /// [response.statusCode] 200(HttpStatus.ok) değilse, hata döner.
     if (response.statusCode != HttpStatus.ok) {
-      return UsersResponseModel(
+      return PhotosResponseModel(
         error: response.message,
         statusCode: response.statusCode,
       );
     }
 
     /// [response.statusCode] 200(HttpStatus.ok) ise, kullanıcı listesi döner.
-    return UsersResponseModel(
-      users: response.data?.users,
+    return PhotosResponseModel(
+      data: response.data?.data,
       statusCode: response.statusCode,
     );
   }
 
-  Future<UsersResponseModel> getUser(int? id) async {
+  Future<PhotosResponseModel> getPhoto(int? id) async {
     /// [id] parametresi ile kullanıcı bilgileri getirilir.
     /// [id] parametresi null ise hata döner.
     if (id == null) {
-      return const UsersResponseModel(
+      return const PhotosResponseModel(
         error: 'Id is null',
         statusCode: HttpStatus.badRequest,
       );
     }
 
     /// [id] parametresi ile kullanıcı bilgileri getirilir.
-    final response = await _service.get<UsersResponseModel>('users/$id',
-        model: const UsersResponseModel());
+    final response = await _service.get<PhotosResponseModel>('photos/$id',
+        model: const PhotosResponseModel());
     if (response.statusCode != HttpStatus.ok) {
-      return UsersResponseModel(
+      return PhotosResponseModel(
         error: response.message,
         statusCode: response.statusCode,
       );
     }
-    return UsersResponseModel(
-      user: response.data?.user,
+    return PhotosResponseModel(
+      data: response.data?.data,
       statusCode: response.statusCode,
     );
   }
