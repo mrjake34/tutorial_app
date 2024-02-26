@@ -81,8 +81,8 @@ final class HomeViewModel extends ChangeNotifier {
   /// Bu metot, [SharedManager] sınıfının [getSavedData] metodu kullanılarak
   /// saklanan kullanıcı bilgilerini getirir.
   void getSavedUser() async {
-    final user =
-        SharedManager.getSavedData<User>(SharedManagerEnums.savedUser, User());
+    final user = SharedManager.getSavedData<User>(
+        SharedManagerEnums.savedUser, const User());
     _user = user;
     notifyListeners();
   }

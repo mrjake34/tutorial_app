@@ -1,15 +1,17 @@
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../product/core/model/base_model.dart';
 part 'photos.g.dart';
 
 @JsonSerializable()
-class Photos {
-  String? url;
-  String? title;
-  int? user;
-  int? id;
-  String? description;
+final class Photos extends BaseModel<Photos> {
+  final String? url;
+  final String? title;
+  final int? user;
+  final int? id;
+  final String? description;
 
-  Photos({
+  const Photos({
     this.url,
     this.title,
     this.user,
@@ -19,6 +21,7 @@ class Photos {
 
   factory Photos.fromJson(Map<String, dynamic> json) => _$PhotosFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$PhotosToJson(this);
 
   Photos copyWith({
@@ -36,4 +39,10 @@ class Photos {
       description: description ?? this.description,
     );
   }
+
+  @override
+  Photos fromJson(json) => Photos.fromJson(json);
+
+  @override
+  List<Object?> get props => [url, title, user, id, description];
 }

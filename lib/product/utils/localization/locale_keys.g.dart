@@ -23,6 +23,8 @@ abstract class  LocaleKeys {
   static const userTexts_zipcode = 'userTexts.zipcode';
   static const userTexts_geo = 'userTexts.geo';
   static const userTexts = 'userTexts';
+  static const photos_title = 'photos.title';
+  static const photos = 'photos';
   static const buttons_submit = 'buttons.submit';
   static const buttons_cancel = 'buttons.cancel';
   static const buttons_edit = 'buttons.edit';

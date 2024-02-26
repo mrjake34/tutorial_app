@@ -23,6 +23,9 @@
         "zipcode": "Zipcode",
         "geo": "Geo"
     },
+    "photos": {
+        "title": "Photos"
+    },
     "buttons": {
         "submit": "Submit",
         "cancel": "Cancel",
