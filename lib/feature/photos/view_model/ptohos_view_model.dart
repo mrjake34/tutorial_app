@@ -52,7 +52,17 @@ final class PhotosViewModel extends ChangeNotifier {
     _error = response.error;
 
     /// [notifyListeners] metodu ile dinleyen widget'ları günceller.
-    notifyListeners();
+    /// [hasListeners] metodu ile dinleyen widget'lar var mı kontrol edilir.
+    /// Eğer varsa [notifyListeners] metodu çalıştırılır.
+    /// Bu sayede dinleyen widget'lar güncellenir.
+    /// Dinleyen widget'lar güncellendikten sonra, [Consumer] sınıfı ile bu widget'lar yeniden oluşturulur.
+    /// Dinleyen bir widget yoksa, [notifyListeners] metodu çalıştırılmaz.
+    /// Bu sayede gereksiz yere widget'lar yeniden oluşturulmaz.
+    /// Bu durumda performans artışı sağlanır.
+    /// Ve dispose olmuş widget'lar gereksiz yere yeniden oluşturulmaz ve hata almaz.
+    if (hasListeners) {
+      notifyListeners();
+    }
   }
 
   void getPhoto(int id) async {
@@ -61,6 +71,8 @@ final class PhotosViewModel extends ChangeNotifier {
     _photo = response.photo;
     _statusCode = response.statusCode;
     _error = response.error;
-    notifyListeners();
+    if (hasListeners) {
+      notifyListeners();
+    }
   }
 }
