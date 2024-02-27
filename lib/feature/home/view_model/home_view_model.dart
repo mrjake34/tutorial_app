@@ -55,7 +55,9 @@ final class HomeViewModel extends ChangeNotifier {
     _error = response.error;
 
     /// [notifyListeners] metodu ile dinleyen widget'ları günceller.
-    notifyListeners();
+    if (hasListeners) {
+      notifyListeners();
+    }
   }
 
   void setUser(int id) async {
@@ -64,7 +66,9 @@ final class HomeViewModel extends ChangeNotifier {
     _user = response.user;
     _statusCode = response.statusCode;
     _error = response.error;
-    notifyListeners();
+    if (hasListeners) {
+      notifyListeners();
+    }
   }
 
   /// [saveUser] metodu, [SharedManager] sınıfı kullanılarak kullanıcı bilgilerini saklar.
@@ -74,7 +78,9 @@ final class HomeViewModel extends ChangeNotifier {
     final isSavedData = await SharedManager.setSavedData<User>(
         SharedManagerEnums.savedUser, user);
     _savedData = isSavedData;
-    notifyListeners();
+    if (hasListeners) {
+      notifyListeners();
+    }
   }
 
   /// [getSavedUser] metodu, [SharedManager] sınıfı kullanılarak saklanan kullanıcı bilgilerini getirir.
@@ -84,7 +90,9 @@ final class HomeViewModel extends ChangeNotifier {
     final user = SharedManager.getSavedData<User>(
         SharedManagerEnums.savedUser, const User());
     _user = user;
-    notifyListeners();
+    if (hasListeners) {
+      notifyListeners();
+    }
   }
 
   /// [removeSavedUser] metodu, [SharedManager] sınıfı kullanılarak saklanan kullanıcı bilgilerini siler.
@@ -93,6 +101,8 @@ final class HomeViewModel extends ChangeNotifier {
   void removeSavedUser() async {
     final isRemoved = await SharedManager.remove(SharedManagerEnums.savedUser);
     _savedData = !isRemoved;
-    notifyListeners();
+    if (hasListeners) {
+      notifyListeners();
+    }
   }
 }
