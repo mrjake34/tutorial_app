@@ -1,3 +1,5 @@
+import 'package:tutorial_app/product/widgets/shimmer/custom_list_shimmer.dart';
+
 import 'index.dart';
 
 final class HomeView extends StatelessWidget {
@@ -42,7 +44,7 @@ final class HomeView extends StatelessWidget {
               );
             }
             return const Center(
-              child: CircularProgressIndicator.adaptive(),
+              child: CustomListShimmer(),
             );
           },
         ),
