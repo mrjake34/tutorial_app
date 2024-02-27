@@ -42,4 +42,6 @@ final class Company extends BaseModel<Company> {
 
   @override
   List<Object?> get props => [name, catchPhrase, bs];
+
+  factory Company.empty() => const Company();
 }
