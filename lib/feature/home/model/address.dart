@@ -65,4 +65,6 @@ final class Address extends BaseModel<Address> {
 
   @override
   List<Object?> get props => [street, suite, city, zipcode, geo];
+
+  factory Address.empty() => const Address();
 }

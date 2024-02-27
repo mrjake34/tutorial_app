@@ -1,5 +1,8 @@
+import 'package:go_router/go_router.dart';
+
+import '../../../../product/utils/router/route_params.dart';
+import '../../../../product/utils/router/route_paths.dart';
 import '../index.dart';
-import 'user_detail_view.dart';
 
 final class ListViewBuilder extends StatelessWidget {
   const ListViewBuilder({
@@ -34,11 +37,9 @@ final class ListViewBuilder extends StatelessWidget {
           child: ListTile(
             /// Kullanıcı adı null olma durumunda boş bir string gösterilir.
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => UserDetailView(user: user),
-                ),
+              context.push(
+                RoutePaths.userDetail.path,
+                extra: user,
               );
             },
             title: Text(user.name ?? ''),

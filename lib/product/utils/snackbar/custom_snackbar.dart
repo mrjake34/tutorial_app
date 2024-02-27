@@ -45,9 +45,9 @@ final class CustomSnackBar {
   /// Örnek kullanım:
   /// CustomSnackBar.showSnackBar('SnackBar Example.');
   /// şeklinde kullanılır.
-  static bool showSnackBar(String? text) {
+  static void showSnackBar(String? text) {
     /// Eğer [text] null ise, metottan çıkılır.
-    if (text == null) return false;
+    if (text == null) return;
 
     /// [SnackBar] sınıfından bir nesne oluşturulur.
     /// Bu nesne, snackbar'ın tasarımı, rengi, gösterim süresi gibi
@@ -72,7 +72,6 @@ final class CustomSnackBar {
         ..removeCurrentSnackBar()
         ..showSnackBar(snackBar);
     }
-    return true;
   }
 
   /// [errorSnackBar] metodu, hata durumunda snackbar göstermek için

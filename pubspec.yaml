@@ -45,6 +45,7 @@ dependencies:
   json_serializable: ^6.7.1
   json_annotation: ^4.8.1
   equatable: ^2.0.5
+  go_router: ^13.2.0
 
 dev_dependencies:
   flutter_test:

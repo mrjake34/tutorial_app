@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tutorial_app/feature/splash/view/splash_view.dart';
 import 'package:tutorial_app/product/core/starter/starter.dart';
 import 'package:tutorial_app/product/utils/localization/localization_manager.dart';
+import 'package:tutorial_app/product/utils/router/router_manager.dart';
 
 import 'product/utils/snackbar/custom_snackbar.dart';
 
@@ -38,7 +39,7 @@ final class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
 
       /// [CustomSnackBar.messengerKey] değişkeni MaterialApp widget'ı içerisinde tanımlanır.
@@ -58,7 +59,7 @@ final class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashView(),
+      routerConfig: RouterManager.routes,
     );
   }
 }

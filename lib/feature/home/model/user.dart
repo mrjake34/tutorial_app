@@ -97,4 +97,18 @@ final class User extends BaseModel<User> {
         website,
         company,
       ];
+
+  /// [empty] metodu ile sınıfın içerisindeki değişkenlerin değerleri boş bir şekilde döndürülür.
+  factory User.empty() {
+    return User(
+      id: 0,
+      name: '',
+      username: '',
+      email: '',
+      address: Address.empty(),
+      phone: '',
+      website: '',
+      company: Company.empty(),
+    );
+  }
 }
