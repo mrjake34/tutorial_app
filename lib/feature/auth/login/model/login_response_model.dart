@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 final class LoginResponseModel {
-  final User? user;
+  final UserCredential? user;
   final String? error;
 
   LoginResponseModel({

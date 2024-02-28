@@ -63,6 +63,7 @@ abstract class  LocaleKeys {
   static const erroStatus_dataLoss = 'erroStatus.dataLoss';
   static const erroStatus_unknown = 'erroStatus.unknown';
   static const erroStatus_verifyEmail = 'erroStatus.verifyEmail';
+  static const erroStatus_invalidCredential = 'erroStatus.invalidCredential';
   static const erroStatus = 'erroStatus';
 
 }

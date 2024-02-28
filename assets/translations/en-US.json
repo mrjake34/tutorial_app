@@ -66,6 +66,7 @@
         "unavailable": "Unavailable",
         "dataLoss": "Data loss",
         "unknown": "Unknown",
-        "verifyEmail": "Verify your e-mail"
+        "verifyEmail": "Verify your e-mail",
+        "invalidCredential": "Invalid User Credential"
     }
 }

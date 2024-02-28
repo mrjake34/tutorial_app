@@ -51,6 +51,7 @@ dependencies:
   flutter_form_builder: ^9.2.1
   form_builder_validators: ^9.1.0
   firebase_core: ^2.24.2
+  riverpod: ^2.5.0
 
 dev_dependencies:
   flutter_test:
