@@ -3,7 +3,7 @@ export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
 export 'package:tutorial_app/feature/home/view_model/home_view_model.dart';
 export 'src/list_view_builder.dart';
-export '../model/user.dart';
+export '../model/user_model.dart';
 export 'package:tutorial_app/product/widgets/maps/maps_view.dart';
 
 /// Bu sayfa tüm importları içerir.

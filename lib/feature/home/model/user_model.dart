@@ -4,8 +4,8 @@ import '../../../product/core/model/base_model.dart';
 import 'address.dart';
 import 'company.dart';
 
-/// [User] sınıfının json serileştirme işlemleri için generate dosyası.
-part 'user.g.dart';
+/// [UserModel] sınıfının json serileştirme işlemleri için generate dosyası.
+part 'user_model.g.dart';
 
 /// [JsonSerializable] özelleştirebilmek için kullanılan bir yapıcı metot.
 /// [checked] parametresi ile json dosyasındaki verilerin null olup olmadığı kontrol edilir.
@@ -15,9 +15,9 @@ part 'user.g.dart';
   explicitToJson: true,
 )
 
-/// [User] sınıfı [BaseModel] sınıfından türetilmiştir.
+/// [UserModel] sınıfı [BaseModel] sınıfından türetilmiştir.
 /// Bu sebeple [BaseModel] sınıfındaki metotlar bu sınıf içerisinde kullanılabilir.
-final class User extends BaseModel<User> {
+final class UserModel extends BaseModel<UserModel> {
   final int? id;
   final String? name;
   final String? username;
@@ -27,9 +27,9 @@ final class User extends BaseModel<User> {
   final String? website;
   final Company? company;
 
-  /// [User] sınıfının yapıcı metodu.
+  /// [UserModel] sınıfının yapıcı metodu.
   /// Bu metot ile sınıfın değişkenlerine değer ataması yapılır.
-  const User({
+  const UserModel({
     this.id,
     this.name,
     this.username,
@@ -44,7 +44,7 @@ final class User extends BaseModel<User> {
   /// Bu metot ile sınıfın içerisindeki değişkenlerin değerleri değiştirilir.
   /// final olarak tanımlanan değişkenlerin değerleri doğrudan değiştirilemez.
   /// Bu sebeple bu metot ile yeni bir sınıf oluşturulur ve bu sınıfın değişkenleri değiştirilir.
-  User copyWith({
+  UserModel copyWith({
     int? id,
     String? name,
     String? username,
@@ -54,7 +54,7 @@ final class User extends BaseModel<User> {
     String? website,
     Company? company,
   }) {
-    return User(
+    return UserModel(
       id: id ?? this.id,
       name: name ?? this.name,
       username: username ?? this.username,
@@ -66,18 +66,19 @@ final class User extends BaseModel<User> {
     );
   }
 
-  /// [User] sınıfının json serileştirme işlemleri için metotlar.
-  /// [User] sınıfını ve içerisinde ki değerleri [Map]'e çevrilir ve geriye bir [Map] döndürür.
+  /// [UserModel] sınıfının json serileştirme işlemleri için metotlar.
+  /// [UserModel] sınıfını ve içerisinde ki değerleri [Map]'e çevrilir ve geriye bir [Map] döndürür.
   @override
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
-  /// [User] sınıfının json serileştirme işlemleri için metotlar.
-  /// [json]'dan gelen verileri [User] sınıfına çevirir ve geriye bir [User] sınıfı döndürür.
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  /// [UserModel] sınıfının json serileştirme işlemleri için metotlar.
+  /// [json]'dan gelen verileri [UserModel] sınıfına çevirir ve geriye bir [UserModel] sınıfı döndürür.
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 
-  /// [fromJson] metodu [User.fromJson()] metodunu kullanarak [json] veriyi [User] sınıfına çevirir.
+  /// [fromJson] metodu [UserModel.fromJson()] metodunu kullanarak [json] veriyi [UserModel] sınıfına çevirir.
   @override
-  User fromJson(json) => User.fromJson(json);
+  UserModel fromJson(json) => UserModel.fromJson(json);
 
   /// [props] metodu ile sınıfın içerisindeki değişkenlerin değerleri listelenir.
   /// Bu metot ile sınıfın içerisindeki değişkenlerin değerleri karşılaştırılır.
@@ -99,8 +100,8 @@ final class User extends BaseModel<User> {
       ];
 
   /// [empty] metodu ile sınıfın içerisindeki değişkenlerin değerleri boş bir şekilde döndürülür.
-  factory User.empty() {
-    return User(
+  factory UserModel.empty() {
+    return UserModel(
       id: 0,
       name: '',
       username: '',

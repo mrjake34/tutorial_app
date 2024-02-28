@@ -29,7 +29,7 @@ final class RouterManager {
       GoRoute(
         path: RoutePaths.userDetail.path,
         pageBuilder: (context, state) => AdaptivePageBuilder.builder<void>(
-          child: UserDetailView(user: state.extra as User),
+          child: UserDetailView(user: state.extra as UserModel),
         ),
       ),
     ],

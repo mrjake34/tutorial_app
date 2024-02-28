@@ -1,16 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.dart';
+part of 'user_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'User',
+UserModel _$UserModelFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'UserModel',
       json,
       ($checkedConvert) {
-        final val = User(
+        final val = UserModel(
           id: $checkedConvert('id', (v) => v as int?),
           name: $checkedConvert('name', (v) => v as String?),
           username: $checkedConvert('username', (v) => v as String?),
@@ -32,7 +32,7 @@ User _$UserFromJson(Map<String, dynamic> json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'username': instance.username,

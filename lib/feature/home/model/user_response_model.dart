@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:tutorial_app/feature/home/model/user.dart';
+import 'package:tutorial_app/feature/home/model/user_model.dart';
 import 'package:tutorial_app/product/core/model/base_model.dart';
 
 final class UsersResponseModel extends BaseModel {
-  final List<User>? users;
-  final User? user;
+  final List<UserModel>? users;
+  final UserModel? user;
   final String? error;
   final int? statusCode;
   const UsersResponseModel(
@@ -19,7 +19,7 @@ final class UsersResponseModel extends BaseModel {
     /// [user] parametresine [User] sınıfından bir nesne oluşturulur ve atanır.
     if (decodedData is Map<String, dynamic>) {
       return UsersResponseModel(
-        user: User.fromJson(decodedData),
+        user: UserModel.fromJson(decodedData),
       );
     }
 
@@ -31,8 +31,8 @@ final class UsersResponseModel extends BaseModel {
     /// [User] olarak kontrol eder, eğer tip hatalı gelirse [cast] hata döndürür.
     return UsersResponseModel(
       users: (decodedData as List<dynamic>?)
-          ?.map((e) => User.fromJson(e as Map<String, dynamic>))
-          .cast<User>()
+          ?.map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+          .cast<UserModel>()
           .toList(),
     );
   }

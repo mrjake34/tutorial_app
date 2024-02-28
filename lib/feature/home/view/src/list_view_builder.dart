@@ -18,7 +18,7 @@ final class ListViewBuilder extends StatelessWidget {
   /// Listenin boş olma durumu kontrol edilmiştir.
   /// Eğer liste boş ise bir önceki sayfada bu widget çalışmayacağı için
   /// kontrol edilmesine gerek yoktur.
-  final List<User> users;
+  final List<UserModel> users;
 
   @override
   Widget build(BuildContext context) {

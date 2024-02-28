@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tutorial_app/feature/home/model/user.dart';
+import 'package:tutorial_app/feature/home/model/user_model.dart';
 import 'package:tutorial_app/feature/home/service/home_service.dart';
 import 'package:tutorial_app/feature/photos/model/photos.dart';
 import 'package:tutorial_app/feature/photos/service/photos_service.dart';
@@ -30,7 +30,7 @@ void main() {
     /// test başarılıdır.
     expect(response.statusCode, HttpStatus.ok);
     expect(response.users, isNotNull);
-    expect(response.users?.cast<User>(), isNotEmpty);
+    expect(response.users?.cast<UserModel>(), isNotEmpty);
   });
   test('Photo Service', () async {
     /// [HomeService] sınıfının [getUsers] metodu çağrılır.

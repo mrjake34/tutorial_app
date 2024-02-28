@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_app/feature/home/model/user.dart';
+import 'package:tutorial_app/feature/home/model/user_model.dart';
 import 'package:tutorial_app/product/core/enums/shared_manager_enums.dart';
 import '../../../product/utils/shared/shared_manager.dart';
 import '../service/home_service.dart';
@@ -22,8 +22,8 @@ final class HomeViewModel extends ChangeNotifier {
   //   _users = value;
   //   notifyListeners();
   // }
-  List<User>? _users;
-  User? _user;
+  List<UserModel>? _users;
+  UserModel? _user;
   int? _statusCode;
   String? _error;
   bool _savedData = false;
@@ -31,8 +31,8 @@ final class HomeViewModel extends ChangeNotifier {
   /// [HomeViewModel] sınıfına ait değişkenlere erişmek için get metotları kullanılır.
   /// Bu metotlar dışarıdan erişim sağlar.
   /// get metotları sadece getter işlemi yapar, değişkenlere değer ataması yapmaz.
-  List<User>? get users => _users;
-  User? get user => _user;
+  List<UserModel>? get users => _users;
+  UserModel? get user => _user;
   int? get statusCode => _statusCode;
   String? get error => _error;
   bool get isSavedData => _savedData;
@@ -74,8 +74,8 @@ final class HomeViewModel extends ChangeNotifier {
   /// [saveUser] metodu, [SharedManager] sınıfı kullanılarak kullanıcı bilgilerini saklar.
   /// [User] tipinde bir parametre alır.
   /// Bu metot, [SharedManager] sınıfının [setSavedData] metodu kullanılarak
-  void saveUser(User user) async {
-    final isSavedData = await SharedManager.setSavedData<User>(
+  void saveUser(UserModel user) async {
+    final isSavedData = await SharedManager.setSavedData<UserModel>(
         SharedManagerEnums.savedUser, user);
     _savedData = isSavedData;
     if (hasListeners) {
@@ -87,8 +87,8 @@ final class HomeViewModel extends ChangeNotifier {
   /// Bu metot, [SharedManager] sınıfının [getSavedData] metodu kullanılarak
   /// saklanan kullanıcı bilgilerini getirir.
   void getSavedUser() async {
-    final user = SharedManager.getSavedData<User>(
-        SharedManagerEnums.savedUser, const User());
+    final user = SharedManager.getSavedData<UserModel>(
+        SharedManagerEnums.savedUser, const UserModel());
     _user = user;
     if (hasListeners) {
       notifyListeners();
