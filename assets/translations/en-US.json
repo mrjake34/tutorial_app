@@ -40,5 +40,32 @@
     },
     "args": {
         "name": "Name: {}"
+    },
+    "erroStatus": {
+        "success": "Success",
+        "userNotFound": "User not found",
+        "weakPassword": "Weak password",
+        "tooManyRequests": "Too many requests",
+        "undefined": "Undefined",
+        "wrongPassword": "Wrong password",
+        "emailAlreadyInUse": "E-mail already in use",
+        "invalidEmail": "Invalid e-mail",
+        "userDisabled": "User disabled",
+        "operationNotAllowed": "Operation not allowed",
+        "invalidPassword": "Invalid password",
+        "invalidArgument": "Invalid argument",
+        "notFound": "Not found",
+        "alreadyExists": "Already exists",
+        "permissionDenied": "Permission denied",
+        "unauthenticated": "Unauthenticated",
+        "resourceExhausted": "Resource exhausted",
+        "aborted": "Aborted",
+        "outOfRange": "Out of range",
+        "unimplemented": "Unimplemented",
+        "internal": "Internal",
+        "unavailable": "Unavailable",
+        "dataLoss": "Data loss",
+        "unknown": "Unknown",
+        "verifyEmail": "Verify your e-mail"
     }
 }
