@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/product/utils/localization/localization_manager.dart';
 
@@ -27,6 +28,8 @@ final class Starter {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
     /// [LocalizationManager] sınıfının [init] metodu çalıştırılır.
     await LocalizationManager.init();

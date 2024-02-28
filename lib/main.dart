@@ -1,4 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/product/core/starter/starter.dart';
 import 'package:tutorial_app/product/utils/localization/localization_manager.dart';
@@ -17,6 +19,15 @@ Future<void> main() async {
   /// Bu sayede burada ki kod karmaşasının önüne geçilir.
   /// Bu metot, Future olduğu için await anahtar kelimesi ile beklenir.
   await Starter.init();
+
+  /// Uygulama hata yakalama işlemleri yapılır.
+  /// Bu işlemler, uygulama içerisinde oluşan hataların yakalanmasını sağlar.
+  /// Bu sayede uygulama içerisinde oluşan hatalar, Firebase Crashlytics üzerinden takip edilebilir.
+  /// Bu işlemler, uygulama başlatılmadan önce yapılmalıdır.
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 
   /// Uygulama başlatılır.
   /// runApp metodu, uygulamanın başlatılmasını sağlar.
