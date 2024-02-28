@@ -1,10 +1,12 @@
 import 'package:go_router/go_router.dart';
-import 'package:tutorial_app/feature/home/view/index.dart';
+import 'package:tutorial_app/feature/auth/login/view/login_view.dart';
 import 'package:tutorial_app/feature/splash/view/splash_view.dart';
 import 'package:tutorial_app/product/utils/router/adaptive_page_builder.dart';
 import 'package:tutorial_app/product/utils/router/route_paths.dart';
 
-import '../../../feature/home/view/src/user_detail_view.dart';
+import '../../../feature/auth/register/view/register_view.dart';
+import '../../../feature/home/model/user_model.dart';
+import '../../../feature/home/view/user_detail_view.dart';
 
 /// [RouterManager] sınıfı, uygulama içerisinde kullanılacak olan sayfa yollarını içerir.
 /// Bu sınıf, GoRouter paketi içerisinde kullanılacak olan sayfa builder'ları içerir.
@@ -21,6 +23,9 @@ final class RouterManager {
   static final _routes = GoRouter(
     routes: [
       GoRoute(
+        /// [path] parametresi, sayfa yolu içerir.
+        /// enum olarak kullanılmasının sebebi, yazım hatalarının önüne geçilmesidir.
+        /// Bu sayede sayfa yolları, uygulama içerisinde aynı şekilde kullanılabilir.
         path: RoutePaths.initial.path,
         pageBuilder: (context, state) => AdaptivePageBuilder.builder<void>(
           child: const SplashView(),
@@ -30,6 +35,18 @@ final class RouterManager {
         path: RoutePaths.userDetail.path,
         pageBuilder: (context, state) => AdaptivePageBuilder.builder<void>(
           child: UserDetailView(user: state.extra as UserModel),
+        ),
+      ),
+      GoRoute(
+        path: RoutePaths.login.path,
+        pageBuilder: (context, state) => AdaptivePageBuilder.builder<void>(
+          child: const LoginView(),
+        ),
+      ),
+      GoRoute(
+        path: RoutePaths.register.path,
+        pageBuilder: (context, state) => AdaptivePageBuilder.builder<void>(
+          child: const RegisterView(),
         ),
       ),
     ],

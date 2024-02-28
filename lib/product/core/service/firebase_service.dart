@@ -6,6 +6,12 @@ import '../../../feature/auth/register/model/register_reponse_model.dart';
 import '../../../feature/auth/register/model/register_request_model.dart';
 import '../enums/firebase_status.dart';
 
+/// [FirebaseService] sınıfı Firebase Authentication servislerini kullanarak
+/// kullanıcı girişi, çıkışı ve kaydı işlemlerini gerçekleştirir.
+/// Tüm servislerin tek bir sınıf içerisinde toplanması kod tekrarını önler.
+/// Ayrıca servislerin kullanımı kolaylaşır ve okunabilirliği artar.
+/// Bu sayede kodun bakımı ve geliştirilmesi kolaylaşır.
+/// Ayrıca servislerin testi kolaylaşır.
 final class FirebaseService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
@@ -48,6 +54,10 @@ final class FirebaseService {
   }
 }
 
+/// [_FirebaseError] extension type metodu ile Firebase hata kodlarına karşılık gelen
+/// [FirebaseStatus] enum'larına dönüşüm yapılır.
+/// Bu sayede kod tekrarı önlenir ve kod okunabilirliği artar.
+/// Ayrıca değişiklik durumunda sadece bu extension type metodu güncellenir.
 extension type const _FirebaseError(String errorCode) {
   FirebaseStatus getFirebaseError() => switch (errorCode) {
         'user-not-found' => FirebaseStatus.userNotFound,

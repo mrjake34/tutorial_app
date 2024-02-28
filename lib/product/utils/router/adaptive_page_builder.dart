@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import '../../../feature/home/view/index.dart';
+import 'package:flutter/material.dart';
 
 /// [AdaptivePageBuilder] sınıfı, uygulama içerisinde kullanılacak olan sayfa builder'ıdır.
 /// [builder] metodu ile geriye [Page] tipinde bir nesne döndürür.

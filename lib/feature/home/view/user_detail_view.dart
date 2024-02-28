@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 
-import '../../../../product/utils/localization/locale_keys.g.dart';
-import '../index.dart';
+import '../../../product/utils/localization/locale_keys.g.dart';
+import '../../../product/widgets/maps/maps_view.dart';
+import '../model/user_model.dart';
 
 /// Kullanıcı detaylarının gösterildiği sayfa
 /// Kullanıcı bilgileri [User] sınıfından alınır.

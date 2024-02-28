@@ -1,6 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:tutorial_app/product/widgets/shimmer/custom_list_shimmer.dart';
 
-import 'index.dart';
+import '../../../product/utils/router/route_paths.dart';
+import '../model/user_model.dart';
+import '../view_model/home_view_model.dart';
+
+part 'src/_list_view_builder.dart';
 
 final class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -37,7 +44,7 @@ final class HomeView extends StatelessWidget {
               /// fakat dart dili bunu anlamaz
               /// bu sebeple [!] işareti ile null force yapılır.
               /// Null kontrolü yapılmadığı durumlarda null foce [!] işareti yapılırsa hata alınır.
-              return ListViewBuilder(users: viewModel.users!);
+              return _ListViewBuilder(users: viewModel.users!);
             } else if (viewModel.error != null) {
               return Center(
                 child: Text(viewModel.error ?? ''),
