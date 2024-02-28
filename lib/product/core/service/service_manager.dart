@@ -32,12 +32,15 @@ final class ServiceManager {
   final String? baseUrl;
 
   /// Bu değişken, API'nin base url'ini belirtir.
-  String _baseUrl = 'https://jsonplaceholder.typicode.com/';
+  static String _baseUrl = 'https://jsonplaceholder.typicode.com/';
 
   /// Bu değişken, API isteklerinde kullanılacak header bilgilerini belirtir.
   final _headers = {
     'Content-Type': 'application/json',
   };
+
+  /// Bu değişken, API'nin base url'ini kontrol eden bir extension metodu oluşturur.
+  final checkUrl = _CheckUrl(_baseUrl);
 
   /// Bu değişken, API isteklerinde kullanılacak http.Client sınıfından bir nesne oluşturur.
   /// _client değişkeni, sadece bu sınıf içerisinde kullanılır.
@@ -57,9 +60,16 @@ final class ServiceManager {
   Future<ResponseModel<T>> get<T extends BaseModel>(
     String path, {
     /// [T] tipi model parametresi parse edilecek verinin tipini belirtir.
-    T? model,
+    required T model,
   }) async {
     final http.Response response;
+
+    /// [checkUrl.urlIsCorrect] değişkeni, API'nin base url'ini kontrol eder.
+    /// Eğer base url doğru değilse, hata döner.
+    /// Bu durumda, API isteği yapılmaz ve geliştirme aşamasında hata alınmış olur.
+    if (!checkUrl.urlIsCorrect) {
+      throw Exception('URL is not correct');
+    }
     try {
       /// API'den veri getirme işlemi yapılır.
       /// [path] parametresi API endpoint'ini belirtir.
@@ -75,9 +85,6 @@ final class ServiceManager {
       /// Eğer model null ise, hata döner.
       response =
           await _client.get(Uri.parse('$_baseUrl$path'), headers: _headers);
-      if (model == null) {
-        return ResponseModel(message: 'Model is null', statusCode: 400);
-      }
 
       /// [response.statusCode] 200(HttpStatus.ok) değilse, hata döner.
       if (response.statusCode != HttpStatus.ok) {
@@ -90,4 +97,14 @@ final class ServiceManager {
       return ResponseModel(message: e.message);
     }
   }
+}
+
+/// Bu extension metodu, API'nin base url'ini kontrol eder.
+/// Eğer base url doğru değilse, hata döner.
+/// Bu durumda, API isteği yapılmaz ve geliştirme aşamasında hata alınmış olur.
+/// Bu extension metodu, ServiceManager sınıfı içerisinde kullanılır.
+/// Bu extension metodu, ServiceManager sınıfı içerisinde private olarak tanımlanmıştır.
+/// Bu extension metot istenilen bir biçimde düzenlenebilir ve yeni özellikler eklenebilir.
+extension type const _CheckUrl(String url) {
+  bool get urlIsCorrect => url.startsWith('http') || url.startsWith('https');
 }

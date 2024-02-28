@@ -12,7 +12,7 @@ import '../index.dart';
 /// Bu sebeple bu sayfada tekrar kontrol edilmesine gerek yoktur.
 final class UserDetailView extends StatelessWidget {
   const UserDetailView({super.key, required this.user});
-  final User user;
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
