@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tutorial_app/feature/splash/view/splash_view.dart';
 import 'package:tutorial_app/product/core/starter/starter.dart';
 import 'package:tutorial_app/product/utils/localization/localization_manager.dart';
 import 'package:tutorial_app/product/utils/router/router_manager.dart';

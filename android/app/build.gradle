@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace = "com.efestech.tutorial_app"
+
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -51,6 +51,7 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+    namespace = "com.efestech.tutorial_app"
 }
 
 flutter {

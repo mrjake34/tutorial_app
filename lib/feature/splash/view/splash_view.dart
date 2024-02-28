@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/feature/home/view/home_view.dart';
+import 'package:tutorial_app/feature/login/view/login_view.dart';
 import 'package:tutorial_app/feature/photos/view/photos_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -30,9 +31,7 @@ class _SplashViewState extends State<SplashView> {
   final _widgetOptions = <Widget>[
     const HomeView(),
     const PhotosView(),
-    const Text(
-      'Index 2: School',
-    ),
+    LoginView()
   ];
 
   @override

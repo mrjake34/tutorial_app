@@ -38,5 +38,31 @@ abstract class  LocaleKeys {
   static const buttons = 'buttons';
   static const args_name = 'args.name';
   static const args = 'args';
+  static const erroStatus_success = 'erroStatus.success';
+  static const erroStatus_userNotFound = 'erroStatus.userNotFound';
+  static const erroStatus_weakPassword = 'erroStatus.weakPassword';
+  static const erroStatus_tooManyRequests = 'erroStatus.tooManyRequests';
+  static const erroStatus_undefined = 'erroStatus.undefined';
+  static const erroStatus_wrongPassword = 'erroStatus.wrongPassword';
+  static const erroStatus_emailAlreadyInUse = 'erroStatus.emailAlreadyInUse';
+  static const erroStatus_invalidEmail = 'erroStatus.invalidEmail';
+  static const erroStatus_userDisabled = 'erroStatus.userDisabled';
+  static const erroStatus_operationNotAllowed = 'erroStatus.operationNotAllowed';
+  static const erroStatus_invalidPassword = 'erroStatus.invalidPassword';
+  static const erroStatus_invalidArgument = 'erroStatus.invalidArgument';
+  static const erroStatus_notFound = 'erroStatus.notFound';
+  static const erroStatus_alreadyExists = 'erroStatus.alreadyExists';
+  static const erroStatus_permissionDenied = 'erroStatus.permissionDenied';
+  static const erroStatus_unauthenticated = 'erroStatus.unauthenticated';
+  static const erroStatus_resourceExhausted = 'erroStatus.resourceExhausted';
+  static const erroStatus_aborted = 'erroStatus.aborted';
+  static const erroStatus_outOfRange = 'erroStatus.outOfRange';
+  static const erroStatus_unimplemented = 'erroStatus.unimplemented';
+  static const erroStatus_internal = 'erroStatus.internal';
+  static const erroStatus_unavailable = 'erroStatus.unavailable';
+  static const erroStatus_dataLoss = 'erroStatus.dataLoss';
+  static const erroStatus_unknown = 'erroStatus.unknown';
+  static const erroStatus_verifyEmail = 'erroStatus.verifyEmail';
+  static const erroStatus = 'erroStatus';
 
 }
