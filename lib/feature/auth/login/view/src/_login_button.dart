@@ -13,20 +13,19 @@ final class _LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LoginViewModel>(
-      builder: (context, viewModel, child) {
-        return ElevatedButton(
-          onPressed: () {
-            if (formKey.currentState?.validate() ?? false) {
-              viewModel.signInWithEmail(
-                email: emailController.text,
-                password: passwordController.text,
+    return ElevatedButton(
+      onPressed: () {
+        formKey.currentState?.save();
+        if (formKey.currentState?.validate() ?? false) {
+          context.read<LoginViewModel>().signInWithEmail(
+                LoginRequestModel(
+                  email: emailController.text,
+                  password: passwordController.text,
+                ),
               );
-            }
-          },
-          child: Text('Login'),
-        );
+        }
       },
+      child: const Text('Login'),
     );
   }
 }

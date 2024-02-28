@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 /// [CustomSnackBar] sınıfı, uygulama içerisinde kullanılacak olan
@@ -93,7 +94,7 @@ final class CustomSnackBar {
     final snackBar = SnackBar(
       backgroundColor: Colors.red,
       content: Text(
-        text,
+        text.tr(),
         style: const TextStyle(color: Colors.white),
       ),
       action: SnackBarAction(
@@ -101,6 +102,7 @@ final class CustomSnackBar {
         onPressed: () {
           _messengerKey.currentState!.hideCurrentSnackBar();
         },
+        textColor: Colors.white,
       ),
     );
 

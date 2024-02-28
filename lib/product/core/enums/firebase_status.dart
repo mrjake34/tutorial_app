@@ -25,6 +25,7 @@ enum FirebaseStatus {
   unavailable(LocaleKeys.erroStatus_unavailable),
   dataLoss(LocaleKeys.erroStatus_dataLoss),
   emailNotVerified(LocaleKeys.erroStatus_verifyEmail),
+  invalidLoginCredentials(LocaleKeys.erroStatus_invalidCredential),
   ;
 
   final String value;
