@@ -1,6 +1,11 @@
+import 'dart:async';
+
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:tutorial_app/feature/auth/login/view/login_view.dart';
+
+import '../../../../../product/utils/remote_config/remote_config_manager.dart';
 
 /// [LoginViewMixin] sınıfı [LoginView] sınıfı içerisinde kullanılan değişkenlerin
 /// ve fonksiyonların tekrar tekrar tanımlanmasını engellemek için oluşturulmuştur.
@@ -12,6 +17,7 @@ mixin LoginViewMixin on State<LoginView> {
   late final GlobalKey<FormBuilderState> formKey;
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
+  late final Stream<RemoteConfigUpdate> streamSubscription;
 
   /// [initState] fonksiyonu [State] sınıfının bir metodu olup, bu sınıfın
   /// bir parçasıdır. Bu fonksiyon [State] sınıfı oluşturulduğunda çalıştırılır.
@@ -30,6 +36,7 @@ mixin LoginViewMixin on State<LoginView> {
     formKey = GlobalKey<FormBuilderState>();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    streamSubscription = RemoteConfigManager.onConfigChanged;
     super.initState();
   }
 

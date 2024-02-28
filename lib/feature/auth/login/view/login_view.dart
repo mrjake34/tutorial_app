@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:tutorial_app/product/utils/remote_config/remote_config_manager.dart';
 import 'package:tutorial_app/product/utils/router/route_paths.dart';
 import 'package:tutorial_app/product/widgets/text_field/custom_text_field.dart';
 import '../model/login_request_model.dart';
@@ -45,6 +49,31 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 200,
+                    child: StreamBuilder<RemoteConfigUpdate>(
+                        stream: streamSubscription,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const SizedBox.shrink();
+                          }
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: snapshot.data?.updatedKeys.length ?? 0,
+                            itemBuilder: (context, index) {
+                              final keys = snapshot.data?.updatedKeys
+                                      .map((e) => e.toString())
+                                      .toList() ??
+                                  [];
+                              final value =
+                                  RemoteConfigManager.getString(keys[index]);
+                              return Text(value);
+                            },
+                          );
+                        }),
+                  ),
                   const FlutterLogo(size: 200, style: FlutterLogoStyle.stacked),
                   const SizedBox(height: 20),
 
