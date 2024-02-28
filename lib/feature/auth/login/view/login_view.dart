@@ -1,7 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:tutorial_app/feature/home/view/index.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:tutorial_app/product/utils/router/route_paths.dart';
 import 'package:tutorial_app/product/widgets/text_field/custom_text_field.dart';
 import '../model/login_request_model.dart';
 import '../view_model/login_view_model.dart';
@@ -33,30 +36,43 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
         appBar: AppBar(
           title: const Text('Login'),
         ),
-        body: FormBuilder(
-          key: formKey,
-          child: Padding(
+        body: Center(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                /// [_EmailField] widget'ı email alanı için oluşturulmuştur.
-                /// private olarak tanımlanmıştır.
-                /// Bu sayede sadece bu dosya içerisinde kullanılabilir.
-                /// [part] ve [part of] keyword'leri ile dosyalar birbirine bağlanmıştır.
-                /// Bu sayede [_email_field.dart] dosyası bu dosya içerisinde kullanılabilir.
-                /// Bu sayede kodun okunabilirliği arttırılmıştır.
-                _EmailField(emailController: emailController),
-                const SizedBox(height: 10),
-                _PasswordField(passwordController: passwordController),
-                const _ErrorField(),
-                const SizedBox(height: 20),
-                _LoginButton(
-                  formKey: formKey,
-                  emailController: emailController,
-                  passwordController: passwordController,
-                ),
-              ],
+            child: FormBuilder(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const FlutterLogo(size: 200, style: FlutterLogoStyle.stacked),
+                  const SizedBox(height: 20),
+
+                  /// [_EmailField] widget'ı email alanı için oluşturulmuştur.
+                  /// private olarak tanımlanmıştır.
+                  /// Bu sayede sadece bu dosya içerisinde kullanılabilir.
+                  /// [part] ve [part of] keyword'leri ile dosyalar birbirine bağlanmıştır.
+                  /// Bu sayede [_email_field.dart] dosyası bu dosya içerisinde kullanılabilir.
+                  /// Bu sayede kodun okunabilirliği arttırılmıştır.
+                  _EmailField(emailController: emailController),
+                  const SizedBox(height: 10),
+                  _PasswordField(passwordController: passwordController),
+                  const _ErrorField(),
+                  const SizedBox(height: 20),
+                  _LoginButton(
+                    formKey: formKey,
+                    emailController: emailController,
+                    passwordController: passwordController,
+                  ),
+                  const SizedBox(height: 20),
+
+                  /// [TextButton] widget'ı ile kayıt ol sayfasına yönlendirme yapılır.
+                  TextButton(
+                    onPressed: () => context.push(RoutePaths.register.path),
+                    child: const Text('Don\'t have an account? Register now!'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

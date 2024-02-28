@@ -1,15 +1,7 @@
-import 'package:go_router/go_router.dart';
+part of '../home_view.dart';
 
-import '../../../../product/utils/router/route_params.dart';
-import '../../../../product/utils/router/route_paths.dart';
-import '../index.dart';
-
-final class ListViewBuilder extends StatelessWidget {
-  const ListViewBuilder({
-    super.key,
-
-    /// Bir önceki sayfada nullable olmayan bir liste gönderildiği için
-    /// bu parametrenin required olarak belirtilmesi gerekmektedir.
+final class _ListViewBuilder extends StatelessWidget {
+  const _ListViewBuilder({
     required this.users,
   });
 

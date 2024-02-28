@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:tutorial_app/feature/home/view/index.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tutorial_app/product/utils/localization/locale_keys.g.dart';
 import 'package:tutorial_app/product/widgets/shimmer/custom_image_shimmer.dart';
 

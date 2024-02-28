@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:tutorial_app/feature/auth/login/view/login_view.dart';
-import '../../../../home/view/index.dart';
 
 /// [LoginViewMixin] sınıfı [LoginView] sınıfı içerisinde kullanılan değişkenlerin
 /// ve fonksiyonların tekrar tekrar tanımlanmasını engellemek için oluşturulmuştur.

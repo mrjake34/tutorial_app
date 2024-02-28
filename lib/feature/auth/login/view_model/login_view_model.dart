@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:tutorial_app/feature/auth/login/model/login_request_model.dart';
-import 'package:tutorial_app/feature/home/view/index.dart';
 import '../../../../product/core/service/firebase_service.dart';
 import '../model/login_response_model.dart';
 

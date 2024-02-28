@@ -5,6 +5,8 @@
 enum RoutePaths {
   initial('/'),
   userDetail('/user-detail'),
+  login('/login'),
+  register('/register'),
   ;
 
   const RoutePaths(this.path);
