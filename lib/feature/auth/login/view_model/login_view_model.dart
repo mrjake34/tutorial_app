@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/feature/auth/login/model/login_request_model.dart';
+import 'package:tutorial_app/product/core/constants/remote_config_keys.dart';
+import 'package:tutorial_app/product/utils/remote_config/remote_config_manager.dart';
 import '../../../../product/core/service/firebase_service.dart';
 import '../model/login_response_model.dart';
 
@@ -9,9 +11,11 @@ final class LoginViewModel extends ChangeNotifier {
 
   UserCredential? _userCredential;
   String _error = '';
+  String _remoteConfigValue = '';
 
   UserCredential? get userCredential => _userCredential;
   String? get error => _error;
+  String? get remoteConfigValue => _remoteConfigValue;
 
   Future<void> signInWithEmail(LoginRequestModel model) async {
     if (model.email == null || model.password == null) {
@@ -22,6 +26,16 @@ final class LoginViewModel extends ChangeNotifier {
     );
     _userCredential = response.user;
     _error = response.error ?? '';
+    if (hasListeners) {
+      notifyListeners();
+    }
+  }
+
+  Future<void> getRemoteConfig() async {
+    final response = RemoteConfigManager.getString(
+      RemoteConfigKeys.loginBackgroundImage,
+    );
+    _remoteConfigValue = response;
     if (hasListeners) {
       notifyListeners();
     }

@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:tutorial_app/product/utils/remote_config/remote_config_manager.dart';
 import 'package:tutorial_app/product/utils/router/route_paths.dart';
 import 'package:tutorial_app/product/widgets/text_field/custom_text_field.dart';
 import '../model/login_request_model.dart';
@@ -31,7 +35,7 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
     /// Burada tanımlamanın amacı Provider'ın olabildiğince yukarıda tanımlanmasıdır.
     /// Bu sayede [LoginViewModel] sınıfı sadece Login sayfasında kullanılmak üzere tanımlanmış olur.
     return ChangeNotifierProvider<LoginViewModel>(
-      create: (context) => LoginViewModel(),
+      create: (context) => LoginViewModel()..getRemoteConfig(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
@@ -45,8 +49,15 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const FlutterLogo(size: 200, style: FlutterLogoStyle.stacked),
-                  const SizedBox(height: 20),
+                  Selector<LoginViewModel, String>(
+                      selector: (context, viewModel) =>
+                          viewModel.remoteConfigValue ?? '',
+                      builder: (context, remoteConfigValue, child) {
+                        return Image.network(
+                          remoteConfigValue,
+                          scale: 1,
+                        );
+                      }),
 
                   /// [_EmailField] widget'ı email alanı için oluşturulmuştur.
                   /// private olarak tanımlanmıştır.
