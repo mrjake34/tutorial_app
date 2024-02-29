@@ -8,7 +8,7 @@ final class RemoteConfigManager {
   static Future<void> init() async {
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
       fetchTimeout: const Duration(minutes: 1),
-      minimumFetchInterval: const Duration(hours: 1),
+      minimumFetchInterval: const Duration(minutes: 1),
     ));
   }
 
@@ -18,6 +18,11 @@ final class RemoteConfigManager {
 
   static String getString(String key) {
     final reponse = remoteConfig.getString(key);
+    return reponse;
+  }
+
+  static bool getBool(String key) {
+    final reponse = remoteConfig.getBool(key);
     return reponse;
   }
 

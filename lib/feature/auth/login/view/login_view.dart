@@ -35,7 +35,7 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
     /// Burada tanımlamanın amacı Provider'ın olabildiğince yukarıda tanımlanmasıdır.
     /// Bu sayede [LoginViewModel] sınıfı sadece Login sayfasında kullanılmak üzere tanımlanmış olur.
     return ChangeNotifierProvider<LoginViewModel>(
-      create: (context) => LoginViewModel(),
+      create: (context) => LoginViewModel()..getRemoteConfig(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
@@ -49,33 +49,15 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 200,
-                    child: StreamBuilder<RemoteConfigUpdate>(
-                        stream: streamSubscription,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const SizedBox.shrink();
-                          }
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: snapshot.data?.updatedKeys.length ?? 0,
-                            itemBuilder: (context, index) {
-                              final keys = snapshot.data?.updatedKeys
-                                      .map((e) => e.toString())
-                                      .toList() ??
-                                  [];
-                              final value =
-                                  RemoteConfigManager.getString(keys[index]);
-                              return Text(value);
-                            },
-                          );
-                        }),
-                  ),
-                  const FlutterLogo(size: 200, style: FlutterLogoStyle.stacked),
-                  const SizedBox(height: 20),
+                  Selector<LoginViewModel, String>(
+                      selector: (context, viewModel) =>
+                          viewModel.remoteConfigValue ?? '',
+                      builder: (context, remoteConfigValue, child) {
+                        return Image.network(
+                          remoteConfigValue,
+                          scale: 1,
+                        );
+                      }),
 
                   /// [_EmailField] widget'ı email alanı için oluşturulmuştur.
                   /// private olarak tanımlanmıştır.

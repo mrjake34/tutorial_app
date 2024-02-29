@@ -32,8 +32,8 @@ final class Starter {
 
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
-    RemoteConfigManager.init();
-    RemoteConfigManager.fetchAndActivate();
+    await RemoteConfigManager.init();
+    await RemoteConfigManager.fetchAndActivate();
 
     /// [LocalizationManager] sınıfının [init] metodu çalıştırılır.
     await LocalizationManager.init();

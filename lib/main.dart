@@ -2,11 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:tutorial_app/product/core/constants/remote_config_keys.dart';
 import 'package:tutorial_app/product/core/starter/starter.dart';
 import 'package:tutorial_app/product/utils/localization/localization_manager.dart';
+import 'package:tutorial_app/product/utils/remote_config/remote_config_manager.dart';
 import 'package:tutorial_app/product/utils/router/router_manager.dart';
 
 import 'product/utils/snackbar/custom_snackbar.dart';
+import 'product/utils/theme/theme.dart';
 
 /// Uygulamanın başlangıç noktası.
 /// Uygulama başlatıldığında, bu sınıf çalışır.
@@ -65,10 +68,11 @@ final class MyApp extends StatelessWidget {
       locale: context.locale,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ChooseThemeMode(RemoteConfigManager.getString(
+        RemoteConfigKeys.themeMode,
+      )).getThemeMode,
       routerConfig: RouterManager.routes,
     );
   }
