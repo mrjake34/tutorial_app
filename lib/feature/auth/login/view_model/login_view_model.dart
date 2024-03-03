@@ -31,6 +31,8 @@ final class LoginViewModel extends ChangeNotifier {
     }
   }
 
+  /// [getRemoteConfig] metodu ile remote config'ten veri çekilir.
+  /// Burada veri keyi sabit olarak verilmiştir çünkü metodun yapacağı işlem önceden bellidir.
   Future<void> getRemoteConfig() async {
     final response = RemoteConfigManager.getString(
       RemoteConfigKeys.loginBackgroundImage,
