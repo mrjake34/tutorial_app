@@ -43,7 +43,7 @@ final class PhotosViewModel extends ChangeNotifier {
     final response = await _photosService.getPhotos(start, end);
 
     /// [response.photos] kullanıcı listesi [_photos] değişkenine atanır.
-    _data = response.data;
+    _data = response.photos;
 
     /// [response.statusCode] durum kodu _statusCode değişkenine atanır.
     _statusCode = response.statusCode;

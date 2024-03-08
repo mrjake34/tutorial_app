@@ -7,8 +7,12 @@ final class UsersResponseModel extends BaseModel {
   final UserModel? user;
   final String? error;
   final int? statusCode;
-  const UsersResponseModel(
-      {this.users, this.user, this.error, this.statusCode});
+  const UsersResponseModel({
+    this.users,
+    this.user,
+    this.error,
+    this.statusCode,
+  });
 
   @override
   fromJson(dynamic json) {

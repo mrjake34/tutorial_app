@@ -40,7 +40,7 @@ void main() {
     /// ve [response.users] içerisinde [User] sınıfından nesneler varsa
     /// test başarılıdır.
     expect(response.statusCode, HttpStatus.ok);
-    expect(response.data?.photos, isNotNull);
-    expect(response.data?.photos?.cast<Photos>(), isNotEmpty);
+    expect(response.photos?.photos, isNotNull);
+    expect(response.photos?.photos?.cast<Photos>(), isNotEmpty);
   });
 }

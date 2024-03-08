@@ -22,8 +22,9 @@ final class PhotosService {
     /// [model] parametresi parse edilecek modeli belirtir.
     /// [UsersResponseModel] dönüş tipi belirtilir.
     final response = await _service.get<PhotosResponseModel>(
-        'photos?offset=$start&limit=$end',
-        model: const PhotosResponseModel());
+      'photos?offset=$start&limit=$end',
+      model: const PhotosResponseModel(),
+    );
 
     /// [response.statusCode] 200(HttpStatus.ok) değilse, hata döner.
     if (response.statusCode != HttpStatus.ok) {
@@ -35,7 +36,7 @@ final class PhotosService {
 
     /// [response.statusCode] 200(HttpStatus.ok) ise, kullanıcı listesi döner.
     return PhotosResponseModel(
-      data: response.data?.data,
+      photos: response.data?.photos,
       statusCode: response.statusCode,
     );
   }
@@ -60,7 +61,7 @@ final class PhotosService {
       );
     }
     return PhotosResponseModel(
-      data: response.data?.data,
+      photos: response.data?.photos,
       statusCode: response.statusCode,
     );
   }

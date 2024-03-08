@@ -20,8 +20,10 @@ final class HomeService {
     /// [users] endpoint'i ile kullanıcı listesi getirilir.
     /// [model] parametresi parse edilecek modeli belirtir.
     /// [UsersResponseModel] dönüş tipi belirtilir.
-    final response = await _service.get<UsersResponseModel>('users',
-        model: const UsersResponseModel());
+    final response = await _service.get<UsersResponseModel>(
+      'users',
+      model: const UsersResponseModel(),
+    );
 
     /// [response.statusCode] 200(HttpStatus.ok) değilse, hata döner.
     if (response.statusCode != HttpStatus.ok) {
@@ -49,8 +51,10 @@ final class HomeService {
     }
 
     /// [id] parametresi ile kullanıcı bilgileri getirilir.
-    final response = await _service.get<UsersResponseModel>('users/$id',
-        model: const UsersResponseModel());
+    final response = await _service.get<UsersResponseModel>(
+      'users/$id',
+      model: const UsersResponseModel(),
+    );
     if (response.statusCode != HttpStatus.ok) {
       return UsersResponseModel(
         error: response.message,

@@ -70,9 +70,11 @@ final class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ChooseThemeMode(RemoteConfigManager.getString(
-        RemoteConfigKeys.themeMode,
-      )).getThemeMode,
+      themeMode: ChooseThemeMode(
+        RemoteConfigManager.getString(
+          RemoteConfigKeys.themeMode,
+        ),
+      ).getThemeMode,
       routerConfig: RouterManager.routes,
     );
   }
