@@ -25,7 +25,7 @@ final class _LoginButton extends StatelessWidget {
               );
         }
       },
-      child: const Text('Login'),
+      child: CustomText(LocaleKeys.buttons_submit.tr()),
     );
   }
 }

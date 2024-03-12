@@ -39,10 +39,10 @@
         "finish": "Finish"
     },
     "args": {
-        "name": "Name: {}"
+        "name": "Name: {} {id}"
     },
     "erroStatus": {
-        "success": "Success",
+        "success": "Success {}",
         "userNotFound": "User not found",
         "weakPassword": "Weak password",
         "tooManyRequests": "Too many requests",
