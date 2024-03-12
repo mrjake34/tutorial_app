@@ -4,21 +4,22 @@ import 'package:http/http.dart' as http;
 import 'package:tutorial_app/product/core/model/base_model.dart';
 import 'package:tutorial_app/product/core/model/response_model.dart';
 
-/// ServiceManager sınıfı, en üst katmanda olan service sınıfıdır.
+/// Videolu anlatım için, https://www.youtube.com/watch?v=yB0JOOtq-iI&t=914s
+/// [ServiceManager] sınıfı, en üst katmanda olan service sınıfıdır.
 /// Bu sınıf service isteklerinin temelini oluşturur.
 /// Tüm service istekleri buradan yapılır ve bu isteklerde dönüş tipi olarak,
-/// ResponseModel tipinde bir dönüş yapılır.
+/// [ResponseModel] tipinde bir dönüş yapılır.
 /// Bu sınıf bağımsız bir yapı oluşturmak için arada bir katman görevi görmektedir.
 /// Bu sınıfı kullanarak, tüm service isteklerini tek bir yerden yapabiliriz.
 /// Service için kullanılan paketler burada import edilir ve kullanılır.
 /// Bu sayede projenin geri kalanında bir değişiklik yapmadan,
 /// sadece burada ki değişiklik ile service yöntemini değiştirebilirsiniz.
-/// Örneğin, http paketi yerine dio yada vexana paketini kullanmak istediğinizde,
+/// Örneğin, [http] paketi yerine [dio] yada [vexana] paketini kullanmak istediğinizde,
 /// sadece bu sınıfı değiştirmeniz yeterli olacaktır.
 final class ServiceManager {
-  /// ServiceManager sınıfının yapıcı metodu.
+  /// [ServiceManager] sınıfının yapıcı metodu.
   /// Bu metot, sınıfın nesnesi oluşturulduğunda çalışır.
-  /// Bu metot içerisinde, http.Client sınıfından bir nesne oluşturulur.
+  /// Bu metot içerisinde, [http.Client] sınıfından bir nesne oluşturulur.
   /// Bu nesne, API istekleri yapmak için kullanılır.
   /// Bu nesne, sınıfın dışında oluşturulduğu için, sınıfın dışından erişilemez.
   /// Bu nesne, sadece bu sınıf içerisinde kullanılır.
@@ -43,7 +44,7 @@ final class ServiceManager {
   final checkUrl = _CheckUrl(_baseUrl);
 
   /// Bu değişken, API isteklerinde kullanılacak http.Client sınıfından bir nesne oluşturur.
-  /// _client değişkeni, sadece bu sınıf içerisinde kullanılır.
+  /// [_client] değişkeni, sadece bu sınıf içerisinde kullanılır.
   /// late anahtar kelimesi, değişkenin değerinin daha sonra atanacağını belirtir.
   /// Bu değişkenin değeri, sınıfın yapıcı metodu içerisinde atanır.
   /// nullable olma durumu olmadığı için late anahtar kelimesi kullanılmıştır.

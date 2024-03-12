@@ -52,12 +52,15 @@ final class RemoteConfigManager {
   /// [onConfigChanged] metodu ile remote config servisindeki verilerin değişip
   /// değişmediği dinlenir.
   /// Bu metodu StreamBuilder ile kullanabilirsiniz
-  /// örnek: StreamBuilder<RemoteConfigUpdate>(
+  /// örnek:
+  /// ```
+  /// StreamBuilder<RemoteConfigUpdate>(
   ///        stream: RemoteConfigManager.onConfigChanged,
   ///       builder: (context, snapshot) {
   ///        return Container();
   ///      },
   ///   );
+  /// ```
   static Stream<RemoteConfigUpdate> get onConfigChanged =>
       remoteConfig.onConfigUpdated;
 }

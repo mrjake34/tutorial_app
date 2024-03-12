@@ -41,7 +41,11 @@ final class UserDetailView extends StatelessWidget {
               /// [LocaleKeys] sınıfı içerisindeki anahtarlar kullanılarak çeviri yapılır.
               /// [args] parametresi ile çeviri yapılırken kullanılacak olan parametreler belirtilir.
               /// bu parametreler, json dosyasındaki {} gibi yer tutucuların yerine geçer.
-              subtitle: Text(LocaleKeys.args_name.tr(args: [user.name ?? ''])),
+              subtitle: Text(LocaleKeys.args_name.tr(args: [
+                user.name ?? ''
+              ], namedArgs: {
+                'id': user.id.toString(),
+              })),
             ),
             ListTile(
               title: Text(LocaleKeys.userTexts_username.tr()),

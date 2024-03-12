@@ -46,9 +46,10 @@ final class CustomSnackBar {
   /// Örnek kullanım:
   /// CustomSnackBar.showSnackBar('SnackBar Example.');
   /// şeklinde kullanılır.
-  static void showSnackBar(String? text) {
+  static void showSnackBar({String? text}) {
     /// Eğer [text] null ise, metottan çıkılır.
-    if (text == null) return;
+    // if (text == null) return;
+    assert(text != null);
 
     /// [SnackBar] sınıfından bir nesne oluşturulur.
     /// Bu nesne, snackbar'ın tasarımı, rengi, gösterim süresi gibi
@@ -56,7 +57,7 @@ final class CustomSnackBar {
     /// [SnackBar] sınıfı, [content] parametresi alır ve bu parametre
     /// ile snackbar'ın içeriği belirlenir.
     /// [Text] sınıfı, snackbar'ın içeriğini belirlemek için kullanılır.
-    final snackBar = SnackBar(content: Text(text));
+    final snackBar = SnackBar(content: Text(text!));
 
     /// [_messengerKey] değişkeni, [ScaffoldMessengerState] sınıfının
     /// bir nesnesine sahiptir.

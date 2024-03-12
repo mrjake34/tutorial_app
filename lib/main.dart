@@ -38,8 +38,8 @@ Future<void> main() async {
   /// [LocalizationManager] widget'ı, uygulama içerisinde kullanılacak olan dil konfigürasyonlarını yapar.
   /// Bu işlem uygulama başlatılmadan önce yapılmalıdır.
   runApp(
-    LocalizationManager(
-      child: const MyApp(),
+    const LocalizationManagerStl(
+      child: MyApp(),
     ),
   );
 }
