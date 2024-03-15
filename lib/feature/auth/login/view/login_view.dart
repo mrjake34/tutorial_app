@@ -34,7 +34,7 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
     /// Burada tanımlamanın amacı Provider'ın olabildiğince yukarıda tanımlanmasıdır.
     /// Bu sayede [LoginViewModel] sınıfı sadece Login sayfasında kullanılmak üzere tanımlanmış olur.
     return ChangeNotifierProvider<LoginViewModel>(
-      create: (context) => LoginViewModel()..getRemoteConfig(),
+      create: (context) => loginViewModel..getRemoteConfig(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
@@ -76,6 +76,10 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
                     passwordController: passwordController,
                   ),
                   const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () => loginViewModel.getRemoteConfig(),
+                    child: const Text('Test'),
+                  ),
 
                   /// [TextButton] widget'ı ile kayıt ol sayfasına yönlendirme yapılır.
                   TextButton(

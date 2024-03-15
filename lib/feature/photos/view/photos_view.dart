@@ -19,7 +19,7 @@ final class PhotosView extends StatelessWidget {
       appBar: AppBar(
         title: Text(LocaleKeys.photos_title.tr()),
       ),
-      body: ChangeNotifierProvider(
+      body: ChangeNotifierProvider<PhotosViewModel>(
         create: (BuildContext context) => PhotosViewModel()
           ..getPhotos(
             0,

@@ -4,6 +4,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:tutorial_app/feature/auth/login/view/login_view.dart';
+import 'package:tutorial_app/feature/auth/login/view_model/login_view_model.dart';
 
 import '../../../../../product/utils/remote_config/remote_config_manager.dart';
 
@@ -18,6 +19,7 @@ mixin LoginViewMixin on State<LoginView> {
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
   late final Stream<RemoteConfigUpdate> streamSubscription;
+  late final LoginViewModel loginViewModel;
 
   /// [initState] fonksiyonu [State] sınıfının bir metodu olup, bu sınıfın
   /// bir parçasıdır. Bu fonksiyon [State] sınıfı oluşturulduğunda çalıştırılır.
@@ -37,6 +39,7 @@ mixin LoginViewMixin on State<LoginView> {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     streamSubscription = RemoteConfigManager.onConfigChanged;
+    loginViewModel = LoginViewModel();
     super.initState();
   }
 
@@ -54,6 +57,7 @@ mixin LoginViewMixin on State<LoginView> {
     emailController.dispose();
     passwordController.dispose();
     formKey.currentState?.dispose();
+    loginViewModel.dispose();
     super.dispose();
   }
 }
