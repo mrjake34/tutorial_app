@@ -57,7 +57,6 @@ mixin LoginViewMixin on State<LoginView> {
     emailController.dispose();
     passwordController.dispose();
     formKey.currentState?.dispose();
-    loginViewModel.dispose();
     super.dispose();
   }
 }
