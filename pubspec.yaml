@@ -50,12 +50,13 @@ dependencies:
   firebase_auth: ^4.16.0
   flutter_form_builder: ^9.2.1
   form_builder_validators: ^9.1.0
-  firebase_core: ^2.24.2
+  firebase_core: ^2.27.1
   riverpod: ^2.5.0
   firebase_crashlytics: ^3.4.9
   firebase_analytics: ^10.8.0
   firebase_remote_config: ^4.3.8
   google_fonts: ^6.1.0
+  cloud_firestore: ^4.15.9
 
 dev_dependencies:
   flutter_test:

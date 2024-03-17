@@ -3,6 +3,8 @@ import 'package:tutorial_app/feature/home/view/home_view.dart';
 import 'package:tutorial_app/feature/auth/login/view/login_view.dart';
 import 'package:tutorial_app/feature/photos/view/photos_view.dart';
 
+import '../../auth/auth_splash/view/auth_splash_view.dart';
+
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -31,7 +33,7 @@ class _SplashViewState extends State<SplashView> {
   final _widgetOptions = <Widget>[
     const HomeView(),
     const PhotosView(),
-    const LoginView()
+    const AuthSplashView()
   ];
 
   @override
