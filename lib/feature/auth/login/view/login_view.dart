@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tutorial_app/product/utils/localization/locale_keys.g.dart';
 import 'package:tutorial_app/product/utils/router/route_paths.dart';
-import 'package:tutorial_app/product/utils/snackbar/custom_snackbar.dart';
 import 'package:tutorial_app/product/widgets/text/custom_text.dart';
 import 'package:tutorial_app/product/widgets/text_field/custom_text_field.dart';
 import '../model/login_request_model.dart';

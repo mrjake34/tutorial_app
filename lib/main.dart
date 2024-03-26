@@ -2,8 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tutorial_app/feature/profile/view_model/profile_view_model.dart';
 import 'package:tutorial_app/product/core/constants/remote_config_keys.dart';
 import 'package:tutorial_app/product/core/starter/starter.dart';
 import 'package:tutorial_app/product/utils/localization/localization_manager.dart';

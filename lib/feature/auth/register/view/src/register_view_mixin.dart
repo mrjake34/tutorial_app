@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:tutorial_app/feature/auth/register/view_model/register_view_model.dart';
-
-import '../register_view.dart';
+part of '../register_view.dart';
 
 mixin RegisterViewMixin on State<RegisterView> {
   late final TextEditingController fullNameController;

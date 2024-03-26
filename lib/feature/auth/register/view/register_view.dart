@@ -6,14 +6,13 @@ import 'package:tutorial_app/feature/auth/register/model/register_request_model.
 import 'package:tutorial_app/feature/auth/register/view_model/register_view_model.dart';
 import 'package:tutorial_app/product/widgets/text_field/custom_text_field.dart';
 
-import 'src/register_view_mixin.dart';
-
+part 'src/register_view_mixin.dart';
 part 'src/_button_field.dart';
 part 'src/_confirm_password_field.dart';
 part 'src/_email_field.dart';
 part 'src/_error_field.dart';
 part 'src/_password_field.dart';
-part 'src/_fullName_field.dart';
+part 'src/_full_name_field.dart';
 part 'src/_phone_field.dart';
 
 class RegisterView extends StatefulWidget {
@@ -55,18 +54,14 @@ class _RegisterViewState extends State<RegisterView> with RegisterViewMixin {
                   ),
                   const _ErrorField(),
                   const SizedBox(height: 16.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      registerViewModel.register(
-                        RegisterRequestModel(
-                          email: emailController.text.trim(),
-                          fullName: fullNameController.text.trim(),
-                          phoneNumber: phoneController.text.trim(),
-                          password: passwordController.text.trim(),
-                        ),
-                      );
-                    },
-                    child: const Text('Register'),
+                  _ButtonField(
+                    formKey: formKey,
+                    registerRequestModel: RegisterRequestModel(
+                      email: emailController.text.trim(),
+                      fullName: fullNameController.text.trim(),
+                      phoneNumber: phoneController.text.trim(),
+                      password: passwordController.text.trim(),
+                    ),
                   ),
                   const SizedBox(height: 16.0),
                 ],
