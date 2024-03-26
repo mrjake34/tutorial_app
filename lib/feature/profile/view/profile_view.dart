@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tutorial_app/feature/profile/model/profile_model.dart';
 import 'package:tutorial_app/feature/profile/view_model/profile_view_model.dart';
 
 part 'profile_view_mixin.dart';
@@ -28,23 +29,37 @@ class _ProfileViewState extends State<ProfileView> with ProfileViewMixin {
                   child: Text(snapshot.error ?? ''),
                 );
               }
-              return Column(
-                children: [
-                  ListTile(
-                    title: Text(snapshot.userModel?.email ?? ''),
-                  ),
-                  ListTile(
-                    title: Text(snapshot.userModel?.fullName ?? ''),
-                  ),
-                  ListTile(
-                    title: Text(snapshot.userModel?.phoneNumber ?? ''),
-                  ),
-                ],
-              );
+              return ProfileField(userModel: snapshot.userModel);
             },
           ),
         ),
       ),
+    );
+  }
+}
+
+class ProfileField extends StatelessWidget {
+  const ProfileField({
+    super.key,
+    required this.userModel,
+  });
+
+  final ProfileModel? userModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text(userModel?.email ?? ''),
+        ),
+        ListTile(
+          title: Text(userModel?.fullName ?? ''),
+        ),
+        ListTile(
+          title: Text(userModel?.phoneNumber ?? ''),
+        ),
+      ],
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tutorial_app/feature/auth/login/model/login_request_model.dart';
 import 'package:tutorial_app/feature/auth/login/model/login_response_model.dart';
-import 'package:tutorial_app/feature/home/model/user_model.dart';
 import 'package:tutorial_app/feature/profile/model/profile_model.dart';
 import 'package:tutorial_app/product/core/model/base_model.dart';
 import 'package:tutorial_app/product/core/model/firestore_model.dart';

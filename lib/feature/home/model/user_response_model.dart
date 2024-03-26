@@ -23,7 +23,10 @@ final class UsersResponseModel extends BaseModel {
     /// [user] parametresine [User] sınıfından bir nesne oluşturulur ve atanır.
     if (decodedData is Map<String, dynamic>) {
       return UsersResponseModel(
-        user: UserModel.fromJson(decodedData),
+        users: (decodedData['users'] as List<dynamic>?)
+            ?.map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+            .cast<UserModel>()
+            .toList(),
       );
     }
 

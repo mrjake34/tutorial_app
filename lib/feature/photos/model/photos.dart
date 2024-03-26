@@ -8,6 +8,7 @@ final class Photos extends BaseModel<Photos> {
   final String? url;
   final String? title;
   final int? user;
+  @JsonKey(name: '_id')
   final int? id;
   final String? description;
 
