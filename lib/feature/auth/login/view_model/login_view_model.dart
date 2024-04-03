@@ -42,4 +42,12 @@ final class LoginViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void logout() {
+    _userCredential = null;
+    _error = '';
+    _remoteConfigValue = '';
+    if (!hasListeners) return;
+    notifyListeners();
+  }
 }

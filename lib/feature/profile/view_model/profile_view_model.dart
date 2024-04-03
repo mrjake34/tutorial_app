@@ -29,4 +29,13 @@ final class ProfileViewModel extends ChangeNotifier {
     if (!hasListeners) return;
     notifyListeners();
   }
+
+  Future<void> logout() async {
+    _userModel = null;
+    _error = null;
+    _isSuccess = null;
+    await FirebaseAuth.instance.signOut();
+    if (!hasListeners) return;
+    notifyListeners();
+  }
 }
