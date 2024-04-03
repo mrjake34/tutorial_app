@@ -3,22 +3,26 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tutorial_app/product/utils/snackbar/custom_snackbar.dart';
 
 void main() {
-  testWidgets('Snackbar Test', (WidgetTester tester) async {
+  testWidgets('Snackbar Test', (widgetTester) async {
     final button = ElevatedButton(
-      onPressed: () {
-        CustomSnackBar.errorSnackBar('SnackBar Example.');
-      },
+      onPressed: () => CustomSnackBar.showSnackBar(text: 'Hello World'),
       child: const Text('Show Snackbar'),
     );
 
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(body: button),
-      scaffoldMessengerKey: CustomSnackBar.messengerKey,
-    ));
+    await widgetTester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: button,
+        ),
+        scaffoldMessengerKey: CustomSnackBar.messengerKey,
+      ),
+    );
 
-    await tester.tap(find.byType(ElevatedButton));
-    await tester.pumpAndSettle();
+    await widgetTester.tap(find.byWidget(button));
+    await widgetTester.pumpAndSettle();
 
-    expect(find.text('SnackBar Example.'), findsOneWidget);
+    expect(find.byWidget(button), findsOneWidget);
+    expect(find.text('Show Snackbar'), findsOneWidget);
+    expect(find.text('Hello World'), findsOneWidget);
   });
 }

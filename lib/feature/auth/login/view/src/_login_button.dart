@@ -19,8 +19,8 @@ final class _LoginButton extends StatelessWidget {
         if (formKey.currentState?.validate() ?? false) {
           context.read<LoginViewModel>().signInWithEmail(
                 LoginRequestModel(
-                  email: emailController.text,
-                  password: passwordController.text,
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim(),
                 ),
               );
         }
