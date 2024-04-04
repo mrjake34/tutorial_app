@@ -37,9 +37,20 @@ final class RemoteConfigManager {
     return reponse;
   }
 
+  /// [getInt] metodu ile remote config servisinden string tipinde veri çekilir.
+  static int getInt(String key) {
+    final reponse = remoteConfig.getInt(key);
+    return reponse;
+  }
+
   /// [getBool] metodu ile remote config servisinden bool tipinde veri çekilir.
   static bool getBool(String key) {
     final reponse = remoteConfig.getBool(key);
+    return reponse;
+  }
+
+  static Map<String, RemoteConfigValue> getAll(String key) {
+    final reponse = remoteConfig.getAll();
     return reponse;
   }
 

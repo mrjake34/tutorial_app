@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutorial_app/feature/home/view/home_view.dart';
 import 'package:tutorial_app/feature/photos/view/photos_view.dart';
+import 'package:tutorial_app/feature/test_page/view/test_view.dart';
 
 import '../../auth/auth_splash/view/auth_splash_view.dart';
 
@@ -22,6 +23,10 @@ class _SplashViewState extends State<SplashView> {
       label: 'Photos',
     ),
     const BottomNavigationBarItem(
+      icon: Icon(Icons.settings),
+      label: 'Tests',
+    ),
+    const BottomNavigationBarItem(
       icon: Icon(Icons.person),
       label: 'Profile',
     ),
@@ -32,6 +37,7 @@ class _SplashViewState extends State<SplashView> {
   final _widgetOptions = <Widget>[
     const HomeView(),
     const PhotosView(),
+    const TestView(),
     const AuthSplashView()
   ];
 
@@ -40,6 +46,8 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.black26,
+        unselectedItemColor: Colors.black45,
         items: items,
         currentIndex: _selectedIndex,
         onTap: (index) {
