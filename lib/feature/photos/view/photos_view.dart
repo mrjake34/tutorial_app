@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tutorial_app/feature/photos/service/photos_service.dart';
+import 'package:tutorial_app/product/core/service/dio_service_manager.dart';
+import 'package:tutorial_app/product/utils/getit/product_state_items.dart';
 import 'package:tutorial_app/product/utils/localization/locale_keys.g.dart';
 import 'package:tutorial_app/product/widgets/shimmer/custom_image_shimmer.dart';
 
@@ -20,8 +23,9 @@ final class PhotosView extends StatelessWidget {
         title: Text(LocaleKeys.photos_title.tr()),
       ),
       body: ChangeNotifierProvider<PhotosViewModel>(
-        create: (BuildContext context) => PhotosViewModel()
-          ..getPhotos(
+        create: (BuildContext context) => PhotosViewModel(
+          ProductStateItems.photoService,
+        )..getPhotos(
             0,
             10,
           ),

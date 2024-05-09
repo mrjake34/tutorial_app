@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:tutorial_app/product/core/model/base_model.dart';
 import 'package:tutorial_app/product/core/model/response_model.dart';
 
+import 'iservice_manager.dart';
+
 /// Videolu anlatım için, https://www.youtube.com/watch?v=yB0JOOtq-iI&t=914s
 /// [ServiceManager] sınıfı, en üst katmanda olan service sınıfıdır.
 /// Bu sınıf service isteklerinin temelini oluşturur.
@@ -16,32 +18,25 @@ import 'package:tutorial_app/product/core/model/response_model.dart';
 /// sadece burada ki değişiklik ile service yöntemini değiştirebilirsiniz.
 /// Örneğin, [http] paketi yerine [dio] yada [vexana] paketini kullanmak istediğinizde,
 /// sadece bu sınıfı değiştirmeniz yeterli olacaktır.
-final class ServiceManager {
+final class ServiceManager extends IServiceManager {
   /// [ServiceManager] sınıfının yapıcı metodu.
   /// Bu metot, sınıfın nesnesi oluşturulduğunda çalışır.
   /// Bu metot içerisinde, [http.Client] sınıfından bir nesne oluşturulur.
   /// Bu nesne, API istekleri yapmak için kullanılır.
   /// Bu nesne, sınıfın dışında oluşturulduğu için, sınıfın dışından erişilemez.
   /// Bu nesne, sadece bu sınıf içerisinde kullanılır.
-  ServiceManager({this.baseUrl}) {
+  ServiceManager(this._baseUrl) {
     _client = http.Client();
-    if (baseUrl != null) {
-      _baseUrl = baseUrl!;
-    }
   }
 
-  final String? baseUrl;
+  final String? _baseUrl;
 
   /// Bu değişken, API'nin base url'ini belirtir.
-  static String _baseUrl = 'https://jsonplaceholder.typicode.com/';
 
   /// Bu değişken, API isteklerinde kullanılacak header bilgilerini belirtir.
   final _headers = {
     'Content-Type': 'application/json',
   };
-
-  /// Bu değişken, API'nin base url'ini kontrol eden bir extension metodu oluşturur.
-  final checkUrl = _CheckUrl(_baseUrl);
 
   /// Bu değişken, API isteklerinde kullanılacak http.Client sınıfından bir nesne oluşturur.
   /// [_client] değişkeni, sadece bu sınıf içerisinde kullanılır.
@@ -58,12 +53,16 @@ final class ServiceManager {
   /// [T] dönüş tipi BaseModel sınıfından türetilmiş bir sınıf olmalıdır.
   /// BaseModel Sınıfı içeriğinde, fromJson metodu bulunmalıdır.
   /// Bu metot, API'den gelen veriyi parse eder.
+  @override
   Future<ResponseModel<T>> get<T extends BaseModel>(
     String path, {
     /// [T] tipi model parametresi parse edilecek verinin tipini belirtir.
     required T model,
   }) async {
     final http.Response response;
+
+    /// Bu değişken, API'nin base url'ini kontrol eden bir extension metodu oluşturur.
+    final checkUrl = _CheckUrl(_baseUrl ?? '');
 
     /// [checkUrl.urlIsCorrect] değişkeni, API'nin base url'ini kontrol eder.
     /// Eğer base url doğru değilse, hata döner.
@@ -106,6 +105,7 @@ final class ServiceManager {
 /// Bu extension metodu, ServiceManager sınıfı içerisinde kullanılır.
 /// Bu extension metodu, ServiceManager sınıfı içerisinde private olarak tanımlanmıştır.
 /// Bu extension metot istenilen bir biçimde düzenlenebilir ve yeni özellikler eklenebilir.
+
 extension type const _CheckUrl(String url) {
   bool get urlIsCorrect => url.startsWith('http') || url.startsWith('https');
 }

@@ -10,6 +10,8 @@ import 'package:tutorial_app/feature/photos/service/photos_service.dart';
 /// [notifyListeners] metodu, [ChangeNotifier] sınıfının içerisindeki değişkenlerde
 /// değişiklik olduğunda çalıştırılır.
 final class PhotosViewModel extends ChangeNotifier {
+  PhotosViewModel(this._photosService);
+
   /// [PhotosViewModel] sınıfının değişkenleri private olarak tanımlanmıştır.
   /// Bu değişkenleri dışarıdan doğrudan erişim olmaması içindir.
   /// Bu değişkenlere dışarıdan erişim yapmak için get metotları kullanılır.
@@ -36,7 +38,7 @@ final class PhotosViewModel extends ChangeNotifier {
 
   /// [PhotoService] sınıfından bir nesne oluşturulur.
   /// Bu sınıf ile [ServiceManager] dan gelen veriler işlenir.
-  final _photosService = PhotosService();
+  late final PhotosService _photosService;
 
   Future<void> getPhotos(int start, int end) async {
     /// Kullanıcı listesi getirilir.

@@ -11,7 +11,7 @@ mixin RegisterViewMixin on State<RegisterView> {
 
   @override
   void initState() {
-    registerViewModel = RegisterViewModel();
+    registerViewModel = RegisterViewModel(FirebaseService());
     fullNameController = TextEditingController();
     phoneController = TextEditingController();
     emailController = TextEditingController();

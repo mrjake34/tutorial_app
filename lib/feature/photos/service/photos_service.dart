@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:tutorial_app/feature/photos/model/photos_response_model.dart';
 
+import '../../../product/core/service/iservice_manager.dart';
 import '../../../product/core/service/service_manager.dart';
 
 final class PhotosService {
-  PhotosService();
+  PhotosService(this._service);
 
   /// [ServiceManager] sınıfından bir nesne oluşturulur.
   /// Bu sınıf ile API istekleri yapılır.
@@ -13,8 +14,7 @@ final class PhotosService {
   /// _service değişkenine dışarıdan erişim olmaması için private olarak tanımlanmıştır.
   /// Bu değişkenin dışarıdan erişim olmaması, sınıfın dışarıdan erişilebilirliğini azaltır.
   /// final değişken olduğu için sadece bir kere değer atanabilir.
-  final _service =
-      ServiceManager(baseUrl: 'https://api.slingacademy.com/v1/sample-data/');
+  late final IServiceManager _service;
 
   Future<PhotosResponseModel> getPhotos(int start, int end) async {
     /// Kullanıcı listesi getirilir.

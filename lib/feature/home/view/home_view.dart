@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:tutorial_app/feature/home/service/home_service.dart';
+import 'package:tutorial_app/product/core/service/service_manager.dart';
+import 'package:tutorial_app/product/utils/getit/product_state_items.dart';
 import 'package:tutorial_app/product/widgets/shimmer/custom_list_shimmer.dart';
 
 import '../../../product/utils/router/route_paths.dart';
@@ -22,7 +25,9 @@ final class HomeView extends StatelessWidget {
     /// [create] parametresi ile [HomeViewModel] sınıfı oluşturulur.
     /// [HomeViewModel] sınıfı içerisinde [setUsers] metodu ile kullanıcı listesi getirilir.
     return ChangeNotifierProvider(
-      create: (BuildContext context) => HomeViewModel()..setUsers(),
+      create: (BuildContext context) => HomeViewModel(
+        ProductStateItems.homeService,
+      )..setUsers(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Home'),
