@@ -11,6 +11,8 @@ import '../service/home_service.dart';
 /// [notifyListeners] metodu, [ChangeNotifier] sınıfının içerisindeki değişkenlerde
 /// değişiklik olduğunda çalıştırılır.
 final class HomeViewModel extends ChangeNotifier {
+  HomeViewModel(this._homeService);
+
   /// [HomeViewModel] sınıfının değişkenleri private olarak tanımlanmıştır.
   /// Bu değişkenleri dışarıdan doğrudan erişim olmaması içindir.
   /// Bu değişkenlere dışarıdan erişim yapmak için get metotları kullanılır.
@@ -39,7 +41,7 @@ final class HomeViewModel extends ChangeNotifier {
 
   /// [HomeService] sınıfından bir nesne oluşturulur.
   /// Bu sınıf ile [ServiceManager] dan gelen veriler işlenir.
-  final _homeService = HomeService();
+  late final HomeService _homeService;
 
   Future<void> setUsers() async {
     /// Kullanıcı listesi getirilir.

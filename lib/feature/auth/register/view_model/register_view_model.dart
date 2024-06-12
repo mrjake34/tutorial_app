@@ -4,9 +4,11 @@ import 'package:tutorial_app/product/core/service/firebase_service.dart';
 import '../model/register_request_model.dart';
 
 final class RegisterViewModel extends ChangeNotifier {
-  final FirebaseService _firebaseService = FirebaseService();
+  final FirebaseService _firebaseService;
   bool _registerSuccess = false;
   String? _registerError;
+
+  RegisterViewModel(this._firebaseService);
 
   bool get registerSuccess => _registerSuccess;
   String? get registerError => _registerError;

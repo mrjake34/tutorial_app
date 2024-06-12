@@ -5,14 +5,15 @@ import 'package:tutorial_app/feature/home/model/user_model.dart';
 import 'package:tutorial_app/feature/home/service/home_service.dart';
 import 'package:tutorial_app/feature/photos/model/photos.dart';
 import 'package:tutorial_app/feature/photos/service/photos_service.dart';
+import 'package:tutorial_app/product/core/service/dio_service_manager.dart';
 
 void main() {
   late final HomeService homeService;
   late final PhotosService photosService;
 
   setUp(() {
-    homeService = HomeService();
-    photosService = PhotosService();
+    homeService = HomeService(DioServiceManager());
+    photosService = PhotosService(DioServiceManager());
   });
 
   test('Home Service', () async {

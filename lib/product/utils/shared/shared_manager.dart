@@ -37,6 +37,10 @@ final class SharedManager {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
 
+  static Future<SharedPreferences> initInstance() async {
+    return await SharedPreferences.getInstance();
+  }
+
   /// [setString] metodu, shared_preferences paketinde string veri saklamak için kullanılır.
   /// [key] parametresi, saklanacak verinin key'ini belirtir.
   /// [value] parametresi, saklanacak veriyi belirtir.

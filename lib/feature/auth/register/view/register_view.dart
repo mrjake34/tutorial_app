@@ -4,6 +4,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 import 'package:tutorial_app/feature/auth/register/model/register_request_model.dart';
 import 'package:tutorial_app/feature/auth/register/view_model/register_view_model.dart';
+import 'package:tutorial_app/product/core/service/firebase_service.dart';
 import 'package:tutorial_app/product/widgets/text_field/custom_text_field.dart';
 
 part 'src/register_view_mixin.dart';

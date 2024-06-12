@@ -27,11 +27,11 @@ final class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> with LoginViewMixin {
   @override
   Widget build(BuildContext context) {
-    /// [ChangeNotifierProvider] ile [LoginViewModel] sınıfı widget ağacına dahil edilir.
-    /// Bu sayede [LoginViewModel] sınıfı içerisindeki değişiklikler dinlenerek widget ağacında yer alan
-    /// widget'ların yeniden oluşturulması sağlanır.
-    /// Burada tanımlamanın amacı Provider'ın olabildiğince yukarıda tanımlanmasıdır.
-    /// Bu sayede [LoginViewModel] sınıfı sadece Login sayfasında kullanılmak üzere tanımlanmış olur.
+    // [ChangeNotifierProvider] ile [LoginViewModel] sınıfı widget ağacına dahil edilir.
+    // Bu sayede [LoginViewModel] sınıfı içerisindeki değişiklikler dinlenerek widget ağacında yer alan
+    // widget'ların yeniden oluşturulması sağlanır.
+    // Burada tanımlamanın amacı Provider'ın olabildiğince yukarıda tanımlanmasıdır.
+    // Bu sayede [LoginViewModel] sınıfı sadece Login sayfasında kullanılmak üzere tanımlanmış olur.
     return ChangeNotifierProvider<LoginViewModel>(
       create: (context) => loginViewModel..getRemoteConfig(),
       child: Scaffold(
@@ -80,7 +80,7 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
                     child: const Text('Test'),
                   ),
 
-                  /// [TextButton] widget'ı ile kayıt ol sayfasına yönlendirme yapılır.
+                  // [TextButton] widget'ı ile kayıt ol sayfasına yönlendirme yapılır.
                   TextButton(
                     onPressed: () => context.push(RoutePaths.register.path),
                     child: const Text('Don\'t have an account? Register now!'),
