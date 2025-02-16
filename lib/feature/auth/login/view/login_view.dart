@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:tutorial_app/product/utils/getit/product_state_items.dart';
 import 'package:tutorial_app/product/utils/localization/locale_keys.g.dart';
 import 'package:tutorial_app/product/utils/router/route_paths.dart';
 import 'package:tutorial_app/product/widgets/text/custom_text.dart';
@@ -25,6 +26,8 @@ final class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> with LoginViewMixin {
+  final ValueNotifier<String> token = ValueNotifier<String>('');
+
   @override
   Widget build(BuildContext context) {
     // [ChangeNotifierProvider] ile [LoginViewModel] sınıfı widget ağacına dahil edilir.
@@ -84,6 +87,26 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
                   TextButton(
                     onPressed: () => context.push(RoutePaths.register.path),
                     child: const Text('Don\'t have an account? Register now!'),
+                  ),
+
+                  ElevatedButton(
+                    onPressed: () => ProductStateItems.cacheManager.saveToken(
+                      'Yeni Token',
+                    ),
+                    child: const Text('Save Token'),
+                  ),
+
+                  ElevatedButton(
+                    onPressed: () async {
+                      token.value =
+                          await ProductStateItems.cacheManager.getToken() ?? '';
+                    },
+                    child: const Text('Get Token'),
+                  ),
+
+                  ValueListenableBuilder(
+                    valueListenable: token,
+                    builder: (context, value, child) => Text(value),
                   ),
                 ],
               ),

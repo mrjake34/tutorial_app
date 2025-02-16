@@ -15,7 +15,7 @@ final class AdaptivePageBuilder {
   static Page<T> builder<T>({
     required Widget child,
   }) {
-    if (Platform.isIOS) {
+    if (Platform.isIOS || Platform.isMacOS) {
       return CupertinoPage<T>(
         child: child,
       );

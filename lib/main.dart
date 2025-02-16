@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -69,7 +71,6 @@ final class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
       theme: lightTheme,
-      darkTheme: darkTheme,
       themeMode: ChooseThemeMode(
         RemoteConfigManager.getString(
           RemoteConfigKeys.themeMode,
