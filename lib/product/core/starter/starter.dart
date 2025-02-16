@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:tutorial_app/product/utils/cache/cache_manager.dart';
 import 'package:tutorial_app/product/utils/getit/product_state_container.dart';
 import 'package:tutorial_app/product/utils/localization/localization_manager.dart';
 import 'package:tutorial_app/product/utils/remote_config/remote_config_manager.dart';
@@ -41,6 +42,7 @@ final class Starter {
 
     /// [SharedManager] sınıfının [init] metodu çalıştırılır.
     await SharedManager.init();
+    await CacheManager.init();
     ProductStateContainer.setup();
   }
 }

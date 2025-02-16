@@ -1,11 +1,11 @@
 part of '../photos_view.dart';
 
 final class _PhotosGridViewBuilder extends StatelessWidget {
-  const _PhotosGridViewBuilder(this.viewModel);
-  final PhotosViewModel viewModel;
+  const _PhotosGridViewBuilder();
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<PhotosViewModel>();
     return Column(
       children: [
         Flexible(

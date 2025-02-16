@@ -1,19 +1,22 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tutorial_app/feature/home/model/user_model.dart';
 import 'package:tutorial_app/feature/home/service/home_service.dart';
 import 'package:tutorial_app/feature/photos/model/photos.dart';
 import 'package:tutorial_app/feature/photos/service/photos_service.dart';
-import 'package:tutorial_app/product/core/service/dio_service_manager.dart';
+import 'package:tutorial_app/product/utils/getit/product_state_container.dart';
+import 'package:tutorial_app/product/utils/getit/product_state_items.dart';
 
 void main() {
   late final HomeService homeService;
   late final PhotosService photosService;
 
-  setUp(() {
-    homeService = HomeService(DioServiceManager());
-    photosService = PhotosService(DioServiceManager());
+  setUp(() async {
+    ProductStateContainer.setupForTest();
+    homeService = ProductStateItems.homeService;
+    photosService = ProductStateItems.photoService;
   });
 
   test('Home Service', () async {

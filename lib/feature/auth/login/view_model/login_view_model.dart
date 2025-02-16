@@ -24,6 +24,7 @@ final class LoginViewModel extends ChangeNotifier {
     final LoginResponseModel response = await _firebaseService.signInWithEmail(
       model,
     );
+
     _userCredential = response.user;
     _error = response.error ?? '';
     if (hasListeners) {
